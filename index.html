@@ -210,6 +210,32 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:60px 60p
   .phys-grid{grid-template-columns:repeat(2,1fr)}
   .profile-lower{grid-template-columns:1fr}
 }
+
+.programs-header-wrap{padding:60px 60px 32px;border-bottom:1px solid var(--dark3)}
+.programs-search-row{padding:20px 60px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--dark3);background:var(--dark);flex-wrap:wrap}
+.programs-count-label{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);white-space:nowrap}
+.programs-inner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px}
+.program-card{background:var(--dark);padding:28px 32px;cursor:pointer;transition:all 0.2s;border-top:2px solid transparent}
+.program-card:hover{background:var(--dark2);border-top-color:var(--gold)}
+.program-name{font-family:var(--font-display);font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;line-height:1.2;margin-bottom:20px}
+.program-count{font-family:var(--font-display);font-size:40px;font-weight:900;color:var(--gold);line-height:1}
+.program-count-label{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-top:3px}
+.program-avg{font-family:var(--font-display);font-size:20px;font-weight:900;color:var(--gold-dark)}
+.program-tags{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap}
+.program-cls-tag{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.06em;background:var(--dark3);color:var(--gray-light);padding:3px 9px;border-radius:2px}
+.roster-header-bar{padding:20px 60px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--dark3);background:var(--dark)}
+.roster-back-btn{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);cursor:pointer;transition:color 0.2s;background:none;border:none;padding:0}
+.roster-back-btn:hover{color:var(--gold)}
+.roster-identity{padding:40px 60px 28px;border-bottom:1px solid var(--dark3)}
+.roster-prog-name{font-family:var(--font-display);font-size:clamp(32px,4vw,56px);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:12px}
+.roster-meta-line{font-size:14px;color:rgba(255,255,255,0.45);display:flex;gap:16px;flex-wrap:wrap}
+.roster-stars-cell{color:var(--gold);letter-spacing:-2px;font-size:13px}
+@media(max-width:900px){
+  .programs-header-wrap{padding:48px 28px 24px}
+  .programs-search-row{padding:16px 28px}
+  .roster-header-bar,.roster-identity{padding-left:28px;padding-right:28px}
+  .programs-inner-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -219,6 +245,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:60px 60p
   <div class="nav-links">
     <div class="nav-link active" onclick="showPage('home');setActive(this)">Home</div>
     <div class="nav-link" onclick="showPage('rankings');setActive(this)">Rankings</div>
+    <div class="nav-link" onclick="showPage('programs');closeRoster();setActive(this)">Roster Tracker</div>
     <div class="nav-link" onclick="showPage('about');setActive(this)">About</div>
   </div>
   <div class="nav-right">
@@ -232,9 +259,9 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:60px 60p
   <section class="hero">
     <div class="hero-photo"></div><div class="hero-bg"></div><div class="hero-grid"></div>
     <div style="position:relative;z-index:2">
-      <div class="hero-eyebrow">Built for Decision-Makers</div>
-      <h1 class="hero-h1">The Intelligence<br>Coaches <span class="gold">Trust.</span></h1>
-      <p class="hero-sub">We scout across six continents and rank everyone on the same list. No shoe brands. No politics. If a player belongs on your board, he's on ours.</p>
+      <div class="hero-eyebrow">Global Basketball Intelligence</div>
+      <h1 class="hero-h1">The Global<br>Prospect <span class="gold">List.</span></h1>
+      <p class="hero-sub">One standard of evaluation. Every player on earth. For the first time, the top prospects from the US and every international market — ranked together on one list.</p>
       <div class="hero-actions">
         <button class="btn-primary" onclick="showPage('rankings')">View Rankings</button>
 
@@ -328,22 +355,22 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:60px 60p
     <div class="section-label">International</div>
     <h2 class="section-h2">Country Index</h2>
     <div class="country-grid">
-      <div class="country-card"><div class="country-flag">🇫🇷</div><div><div class="country-name">France</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇷🇸</div><div><div class="country-name">Serbia</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇩🇪</div><div><div class="country-name">Germany</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇨🇦</div><div><div class="country-name">Canada</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇦🇺</div><div><div class="country-name">Australia</div><div class="country-count">Ranked prospect</div></div></div>
-      <div class="country-card"><div class="country-flag">🇧🇷</div><div><div class="country-name">Brazil</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇳🇬</div><div><div class="country-name">Nigeria</div><div class="country-count">Ranked prospect</div></div></div>
-      <div class="country-card"><div class="country-flag">🇧🇫</div><div><div class="country-name">Burkina Faso</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇱🇻</div><div><div class="country-name">Latvia</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇮🇹</div><div><div class="country-name">Italy</div><div class="country-count">Ranked prospect</div></div></div>
-      <div class="country-card"><div class="country-flag">🇹🇷</div><div><div class="country-name">Turkey</div><div class="country-count">Ranked prospect</div></div></div>
-      <div class="country-card"><div class="country-flag">🇩🇰</div><div><div class="country-name">Denmark</div><div class="country-count">Ranked prospect</div></div></div>
-      <div class="country-card"><div class="country-flag">🇸🇸</div><div><div class="country-name">South Sudan</div><div class="country-count">Ranked prospect</div></div></div>
-      <div class="country-card"><div class="country-flag">🇨🇩</div><div><div class="country-name">DRC</div><div class="country-count">Multiple ranked prospects</div></div></div>
-      <div class="country-card"><div class="country-flag">🇩🇴</div><div><div class="country-name">Dom. Republic</div><div class="country-count">Ranked prospect</div></div></div>
-      <div class="country-card"><div class="country-flag">🇨🇮</div><div><div class="country-name">Cote D'Ivoire</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="France" data-flag="🇫🇷"><div class="country-flag">🇫🇷</div><div><div class="country-name">France</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Serbia" data-flag="🇷🇸"><div class="country-flag">🇷🇸</div><div><div class="country-name">Serbia</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Germany" data-flag="🇩🇪"><div class="country-flag">🇩🇪</div><div><div class="country-name">Germany</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Canada" data-flag="🇨🇦"><div class="country-flag">🇨🇦</div><div><div class="country-name">Canada</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Australia" data-flag="🇦🇺"><div class="country-flag">🇦🇺</div><div><div class="country-name">Australia</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="Brazil" data-flag="🇧🇷"><div class="country-flag">🇧🇷</div><div><div class="country-name">Brazil</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Nigeria" data-flag="🇳🇬"><div class="country-flag">🇳🇬</div><div><div class="country-name">Nigeria</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="Burkina" data-flag="🇧🇫" data-display="Burkina Faso"><div class="country-flag">🇧🇫</div><div><div class="country-name">Burkina Faso</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Latvia" data-flag="🇱🇻"><div class="country-flag">🇱🇻</div><div><div class="country-name">Latvia</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Italy" data-flag="🇮🇹"><div class="country-flag">🇮🇹</div><div><div class="country-name">Italy</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="Turkey" data-flag="🇹🇷"><div class="country-flag">🇹🇷</div><div><div class="country-name">Turkey</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="Denmark" data-flag="🇩🇰"><div class="country-flag">🇩🇰</div><div><div class="country-name">Denmark</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="South Sudan" data-flag="🇸🇸"><div class="country-flag">🇸🇸</div><div><div class="country-name">South Sudan</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="DRC" data-flag="🇨🇩"><div class="country-flag">🇨🇩</div><div><div class="country-name">DRC</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card" data-country="Dominican Republic" data-flag="🇩🇴" data-display="Dom. Republic"><div class="country-flag">🇩🇴</div><div><div class="country-name">Dom. Republic</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card" data-country="Cote D'Ivoire" data-flag="🇨🇮"><div class="country-flag">🇨🇮</div><div><div class="country-name">Cote D'Ivoire</div><div class="country-count">Ranked prospect</div></div></div>
     </div>
   </section>
 
@@ -371,6 +398,14 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:60px 60p
       <div class="class-tab" onclick="setActiveTab('2028')">Class of 2028</div>
       <div class="class-tab" onclick="setActiveTab('2029')">Class of 2029</div>
     </div>
+  </div>
+  <div id="country-filter-bar" style="display:none;padding:13px 60px;background:rgba(201,169,110,0.07);border-bottom:1px solid rgba(201,169,110,0.18);align-items:center;justify-content:space-between;gap:12px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold)">Viewing</span>
+      <span id="country-filter-label" style="font-family:var(--font-display);font-size:15px;font-weight:800;color:var(--white)">—</span>
+      <span style="font-size:12px;color:var(--gray)">· all classes</span>
+    </div>
+    <button onclick="clearCountryFilter()" style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray);cursor:pointer;background:none;border:1px solid var(--dark3);border-radius:2px;padding:5px 12px;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--dark3)';this.style.color='var(--gray)'">× Clear</button>
   </div>
   <div class="rankings-controls">
     <div class="search-box">
@@ -696,6 +731,79 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:60px 60p
   </section>
 </div>
 
+<!-- PROGRAMS / ROSTER TRACKER -->
+<div id="page-programs" class="page">
+  <div class="programs-header-wrap">
+    <div class="section-label">Programs Directory</div>
+    <h1 class="rankings-title">Roster Tracker</h1>
+    <p style="font-size:15px;color:rgba(255,255,255,0.45);max-width:540px;margin-top:12px;line-height:1.6">Schools and academies with 2 or more ranked prospects from the Class of 2027, 2028, and 2029.</p>
+  </div>
+  <div class="programs-search-row">
+    <div class="search-box" style="max-width:380px;flex:1">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="programs-search" placeholder="Search programs..." style="background:none;border:none;outline:none;color:var(--white);font-family:var(--font-body);font-size:14px;width:100%">
+    </div>
+    <div class="programs-count-label"><span id="programs-visible-count">35</span> Programs</div>
+  </div>
+  <div id="programs-grid" style="background:var(--dark3);padding:2px">
+    <div class="programs-inner-grid" id="programs-inner-grid">
+<div class="program-card" data-name="montverde" onclick="openRoster(0)"><div class="program-name">Montverde</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">5</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.2 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="insep pf" onclick="openRoster(1)"><div class="program-name">INSEP PF</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">4</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.2 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="fc barcelona" onclick="openRoster(2)"><div class="program-name">FC Barcelona</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">4</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="real madrid" onclick="openRoster(3)"><div class="program-name">Real Madrid</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">4</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="prolific prep" onclick="openRoster(4)"><div class="program-name">Prolific Prep</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 5.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="southeastern prep" onclick="openRoster(5)"><div class="program-name">Southeastern Prep</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.7 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span></div></div>
+<div class="program-card" data-name="dme academy" onclick="openRoster(6)"><div class="program-name">DME Academy</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.3 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="dynamic prep" onclick="openRoster(7)"><div class="program-name">Dynamic Prep</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.3 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="bella vista" onclick="openRoster(8)"><div class="program-name">Bella Vista</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.3 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="dream city christian" onclick="openRoster(9)"><div class="program-name">Dream City Christian</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.3 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="woodward" onclick="openRoster(10)"><div class="program-name">Woodward</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.3 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="az compass prep" onclick="openRoster(11)"><div class="program-name">AZ Compass Prep</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.3 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="iowa united" onclick="openRoster(12)"><div class="program-name">Iowa United</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">3</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span></div></div>
+<div class="program-card" data-name="luhi" onclick="openRoster(13)"><div class="program-name">LuHi</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span></div></div>
+<div class="program-card" data-name="link academy" onclick="openRoster(14)"><div class="program-name">Link Academy</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span></div></div>
+<div class="program-card" data-name="city reapers" onclick="openRoster(15)"><div class="program-name">City Reapers</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="cold hearts (ote)" onclick="openRoster(16)"><div class="program-name">Cold Hearts (OTE)</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="img academy" onclick="openRoster(17)"><div class="program-name">IMG Academy</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="crossroads" onclick="openRoster(18)"><div class="program-name">Crossroads</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 5.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="bartlett" onclick="openRoster(19)"><div class="program-name">Bartlett</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="columbus" onclick="openRoster(20)"><div class="program-name">Columbus</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="oak hill" onclick="openRoster(21)"><div class="program-name">Oak Hill</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="mt zion prep" onclick="openRoster(22)"><div class="program-name">Mt Zion Prep</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="la lumiere" onclick="openRoster(23)"><div class="program-name">La Lumiere</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span></div></div>
+<div class="program-card" data-name="casademont zaragoza" onclick="openRoster(24)"><div class="program-name">Casademont Zaragoza</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="huntington prep" onclick="openRoster(25)"><div class="program-name">Huntington Prep</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="coronado" onclick="openRoster(26)"><div class="program-name">Coronado</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="wisconsin lutheran" onclick="openRoster(27)"><div class="program-name">Wisconsin Lutheran</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="sierra canyon" onclick="openRoster(28)"><div class="program-name">Sierra Canyon</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="brewster academy" onclick="openRoster(29)"><div class="program-name">Brewster Academy</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="archbishop spalding" onclick="openRoster(30)"><div class="program-name">Archbishop Spalding</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="crestwood prep" onclick="openRoster(31)"><div class="program-name">Crestwood Prep</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="pike" onclick="openRoster(32)"><div class="program-name">Pike</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2027</span><span class="program-cls-tag">2028</span></div></div>
+<div class="program-card" data-name="mt bethel christian" onclick="openRoster(33)"><div class="program-name">Mt Bethel Christian</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.5 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span><span class="program-cls-tag">2029</span></div></div>
+<div class="program-card" data-name="briarcrest christian" onclick="openRoster(34)"><div class="program-name">Briarcrest Christian</div><div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px"><div><div class="program-count">2</div><div class="program-count-label">Ranked Prospects</div></div><div style="text-align:right"><div class="program-avg">★ 4.0 avg</div><div class="program-count-label">Avg Rating</div></div></div><div class="program-tags"><span class="program-cls-tag">2028</span></div></div>
+    </div>
+  </div>
+  <div id="roster-view" style="display:none">
+    <div class="roster-header-bar">
+      <button class="roster-back-btn" onclick="closeRoster()">&#8592; All Programs</button>
+      <div id="roster-badge" class="profile-badge-tag">—</div>
+    </div>
+    <div class="roster-identity">
+      <h1 class="roster-prog-name" id="roster-prog-name">—</h1>
+      <div class="roster-meta-line" id="roster-meta-line">—</div>
+    </div>
+    <div class="rankings-table-wrap">
+      <table class="rankings-table" style="min-width:500px">
+        <thead><tr>
+          <th>Class</th><th>Player</th><th>Pos</th><th>Ht</th><th>Nationality</th><th>Stars</th>
+        </tr></thead>
+        <tbody id="roster-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <!-- PLAYER PROFILE -->
 <div id="page-profile" class="page">
   <div class="profile-header-bar">
@@ -802,22 +910,26 @@ function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   window.scrollTo(0,0);
-  const map={home:0,rankings:1,about:2};
+  const map={home:0,rankings:1,programs:2,about:3};
   document.querySelectorAll('.nav-link').forEach((l,i)=>l.classList.toggle('active',i===map[id]));
 }
 function setActive(el){
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
   el.classList.add('active');
 }
+let currentCountry='';
 function setActiveTab(cls){
   showPage('rankings');
   const tabMap={'2027':0,'2028':1,'2029':2};
   document.querySelectorAll('.class-tab').forEach((t,i)=>t.classList.toggle('active',i===tabMap[cls]));
   document.querySelectorAll('.class-view').forEach(b=>b.classList.remove('active'));
   document.getElementById('tbody-'+cls).classList.add('active');
-  currentFilter='all';
-  document.querySelectorAll('.filter-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
-  document.getElementById('search-input').value='';
+  if(!currentCountry){
+    currentFilter='all';
+    document.querySelectorAll('.filter-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+    document.getElementById('search-input').value='';
+  }
+  filterTable();
 }
 let currentFilter='all';
 function setFilter(btn,f){
@@ -838,10 +950,29 @@ function filterTable(){
     if(currentFilter==='usa'&&origin!=='usa')show=false;
     if(currentFilter==='intl'&&origin!=='intl')show=false;
     if(['pg','sg','sf','pf','c'].includes(currentFilter)&&pos!==currentFilter)show=false;
+    if(currentCountry&&!text.includes(currentCountry.toLowerCase()))show=false;
     if(q&&!text.includes(q))show=false;
     row.style.display=show?'':'none';
   });
 }
+function filterByCountry(country,flag,display){
+  currentCountry=country;
+  showPage('rankings');
+  filterTable();
+  const bar=document.getElementById('country-filter-bar');
+  bar.style.display='flex';
+  document.getElementById('country-filter-label').textContent=(display||country)+' '+flag;
+}
+function clearCountryFilter(){
+  currentCountry='';
+  document.getElementById('country-filter-bar').style.display='none';
+  filterTable();
+}
+document.querySelectorAll('.country-card').forEach(function(card){
+  card.addEventListener('click',function(){
+    filterByCountry(this.dataset.country,this.dataset.flag,this.dataset.display);
+  });
+});
 let _profileReturnClass='2027';
 let _profileReturnPage='rankings';
 function openProfile(el){
@@ -888,6 +1019,44 @@ document.querySelectorAll('.tr-name').forEach(function(el){
 });
 document.querySelectorAll('.player-row .player-name').forEach(function(el){
   el.addEventListener('click',function(e){e.stopPropagation();openProfile(this.closest('.player-row'));});
+});
+const PROGRAMS=[{"name": "Montverde", "count": 5, "classes": [2027, 2028], "avg_stars": 4.2, "players": [{"name": "Oneal Delancy", "cls": 2027, "pos": "SG", "ht": "6’4", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 37}, {"name": "Derek Daniels", "cls": 2027, "pos": "C", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 76}, {"name": "Javion Tyndale", "cls": 2027, "pos": "PG", "ht": "5’9", "nat": "Canada", "flag": "🇨🇦", "stars": 4, "rank": 105}, {"name": "Isaiah Hamilton", "cls": 2028, "pos": "SF", "ht": "6’7", "nat": "Canada", "flag": "🇨🇦", "stars": 5, "rank": 2}, {"name": "Xavier Skipworth", "cls": 2028, "pos": "SG", "ht": "6’5", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 12}]}, {"name": "INSEP PF", "count": 4, "classes": [2027, 2028], "avg_stars": 4.2, "players": [{"name": "Nathan Soliman", "cls": 2027, "pos": "PF", "ht": "6’9", "nat": "France", "flag": "🇫🇷", "stars": 5, "rank": 1}, {"name": "Messie Iwani", "cls": 2028, "pos": "PF", "ht": "6’9", "nat": "France", "flag": "🇫🇷", "stars": 4, "rank": 43}, {"name": "Liam Kabeya", "cls": 2028, "pos": "SG", "ht": "6’4", "nat": "France", "flag": "🇫🇷", "stars": 4, "rank": 50}, {"name": "Ilian Toholin", "cls": 2028, "pos": "PG", "ht": "6’4", "nat": "France", "flag": "🇫🇷", "stars": 4, "rank": 55}]}, {"name": "FC Barcelona", "count": 4, "classes": [2027, 2028, 2029], "avg_stars": 4.5, "players": [{"name": "Nikola Kusturica", "cls": 2027, "pos": "SF", "ht": "6’8", "nat": "Serbia", "flag": "🇷🇸", "stars": 5, "rank": 3}, {"name": "Jan Cerdan", "cls": 2028, "pos": "PF", "ht": "6’10", "nat": "Spain", "flag": "🇪🇸", "stars": 4, "rank": 31}, {"name": "Mohamed Dabone", "cls": 2029, "pos": "C", "ht": "6’11", "nat": "Burkina", "flag": "🇧🇫", "stars": 5, "rank": 1}, {"name": "Kristians Martinsons", "cls": 2029, "pos": "SF", "ht": "6’7", "nat": "Latvia", "flag": "🇱🇻", "stars": 4, "rank": 23}]}, {"name": "Real Madrid", "count": 4, "classes": [2027, 2028], "avg_stars": 4.5, "players": [{"name": "Fabian Kayser", "cls": 2027, "pos": "SG", "ht": "6’8", "nat": "Germany", "flag": "🇩🇪", "stars": 5, "rank": 22}, {"name": "Omer Kutluay", "cls": 2027, "pos": "PG", "ht": "6’4", "nat": "Turkey", "flag": "🇹🇷", "stars": 4, "rank": 63}, {"name": "Rhys Robinson", "cls": 2028, "pos": "PG", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 3}, {"name": "Toni Garma", "cls": 2028, "pos": "SG", "ht": "6’5", "nat": "Croatia", "flag": "🇭🇷", "stars": 4, "rank": 41}]}, {"name": "Prolific Prep", "count": 3, "classes": [2027, 2029], "avg_stars": 5.0, "players": [{"name": "Nasir Anderson", "cls": 2027, "pos": "PG", "ht": "6’2", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 8}, {"name": "Lewis Uvwo", "cls": 2027, "pos": "C", "ht": "6’10", "nat": "Nigeria", "flag": "🇳🇬", "stars": 5, "rank": 21}, {"name": "Draydne McDaniel", "cls": 2029, "pos": "SF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 2}]}, {"name": "Southeastern Prep", "count": 3, "classes": [2027], "avg_stars": 4.7, "players": [{"name": "CJ Rosser", "cls": 2027, "pos": "PF", "ht": "6’10", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 2}, {"name": "Beckham Black", "cls": 2027, "pos": "PG", "ht": "6’3", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 4}, {"name": "Marri Wesley", "cls": 2027, "pos": "SF", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 104}]}, {"name": "DME Academy", "count": 3, "classes": [2027, 2028], "avg_stars": 4.3, "players": [{"name": "Ryan Hampton", "cls": 2027, "pos": "SF", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 16}, {"name": "Yohan Kabongo", "cls": 2027, "pos": "C", "ht": "6’9", "nat": "DRC", "flag": "🇨🇩", "stars": 4, "rank": 87}, {"name": "Kamajay Jenkins", "cls": 2028, "pos": "SG", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 72}]}, {"name": "Dynamic Prep", "count": 3, "classes": [2027, 2028], "avg_stars": 4.3, "players": [{"name": "Marcus Spears", "cls": 2027, "pos": "SF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 5}, {"name": "Howard Williams", "cls": 2027, "pos": "SG", "ht": "6’5", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 56}, {"name": "Benjamin Berrouet", "cls": 2028, "pos": "PF", "ht": "6’8", "nat": "Latvia", "flag": "🇱🇻", "stars": 4, "rank": 22}]}, {"name": "Bella Vista", "count": 3, "classes": [2027, 2028], "avg_stars": 4.3, "players": [{"name": "Paul Osaruyi", "cls": 2027, "pos": "PF", "ht": "6’9", "nat": "Canada", "flag": "🇨🇦", "stars": 5, "rank": 9}, {"name": "Lyris Robinson", "cls": 2027, "pos": "SG", "ht": "6’4", "nat": "Canada", "flag": "🇨🇦", "stars": 4, "rank": 90}, {"name": "Liam Mitakaro", "cls": 2028, "pos": "PG", "ht": "6’4", "nat": "Canada", "flag": "🇨🇦", "stars": 4, "rank": 26}]}, {"name": "Dream City Christian", "count": 3, "classes": [2027, 2028], "avg_stars": 4.3, "players": [{"name": "Malachi Jordan", "cls": 2027, "pos": "SF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 6}, {"name": "Keaundre Morris", "cls": 2027, "pos": "PG", "ht": "6’1", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 102}, {"name": "Mateen Cleaves Jr", "cls": 2028, "pos": "SG", "ht": "6’3", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 28}]}, {"name": "Woodward", "count": 3, "classes": [2027, 2028], "avg_stars": 4.3, "players": [{"name": "Jarvis Hayes Jr", "cls": 2027, "pos": "SF", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 29}, {"name": "Bentley Lusakueno", "cls": 2028, "pos": "PF", "ht": "6’10", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 11}, {"name": "Myles Hayes", "cls": 2028, "pos": "SG", "ht": "6’5", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 17}]}, {"name": "AZ Compass Prep", "count": 3, "classes": [2027, 2028], "avg_stars": 4.3, "players": [{"name": "Demarcus Henry", "cls": 2027, "pos": "SF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 20}, {"name": "Jakyi Miles", "cls": 2028, "pos": "PG", "ht": "6’4", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 15}, {"name": "Darren Ford", "cls": 2028, "pos": "SG", "ht": "6’4", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 44}]}, {"name": "Iowa United", "count": 3, "classes": [2027], "avg_stars": 4.0, "players": [{"name": "Tyran Frazier", "cls": 2027, "pos": "PF", "ht": "6’10", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 53}, {"name": "Godson Okokoh", "cls": 2027, "pos": "PF", "ht": "6’8", "nat": "Canada", "flag": "🇨🇦", "stars": 4, "rank": 91}, {"name": "Avery Huston", "cls": 2027, "pos": "SG", "ht": "6’3", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 107}]}, {"name": "LuHi", "count": 2, "classes": [2027], "avg_stars": 4.5, "players": [{"name": "Moussa Kamissoko", "cls": 2027, "pos": "PF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 12}, {"name": "Jamaal McKnight Jr", "cls": 2027, "pos": "PG", "ht": "5'11", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 99}]}, {"name": "Link Academy", "count": 2, "classes": [2027], "avg_stars": 4.5, "players": [{"name": "Davion Thompson", "cls": 2027, "pos": "PG", "ht": "6’2", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 19}, {"name": "Cameron Barnes", "cls": 2027, "pos": "PF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 92}]}, {"name": "City Reapers", "count": 2, "classes": [2027, 2028], "avg_stars": 4.0, "players": [{"name": "Gabe Nesmith", "cls": 2027, "pos": "SG", "ht": "6’5", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 26}, {"name": "Blaze Johnson", "cls": 2028, "pos": "PG", "ht": "6’4", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 19}]}, {"name": "Cold Hearts (OTE)", "count": 2, "classes": [2027, 2028], "avg_stars": 4.5, "players": [{"name": "Anderson Diaz", "cls": 2027, "pos": "PG", "ht": "6’0", "nat": "Dominican Republic", "flag": "🇩🇴", "stars": 5, "rank": 23}, {"name": "Quinton Wilson", "cls": 2028, "pos": "SG", "ht": "6’5", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 49}]}, {"name": "IMG Academy", "count": 2, "classes": [2028], "avg_stars": 4.5, "players": [{"name": "Bamba Touray", "cls": 2028, "pos": "PF", "ht": "7’0", "nat": "Senegal", "flag": "🇸🇳", "stars": 5, "rank": 6}, {"name": "Dylan Betts", "cls": 2028, "pos": "C", "ht": "7’0", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 18}]}, {"name": "Crossroads", "count": 2, "classes": [2028], "avg_stars": 5.0, "players": [{"name": "Evan Willis", "cls": 2028, "pos": "SF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 7}, {"name": "Shalen Sheppard", "cls": 2028, "pos": "PF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 9}]}, {"name": "Bartlett", "count": 2, "classes": [2027, 2028], "avg_stars": 4.5, "players": [{"name": "Dylan Jones", "cls": 2027, "pos": "SG", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 61}, {"name": "DJ Okoth", "cls": 2028, "pos": "PF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 10}]}, {"name": "Columbus", "count": 2, "classes": [2028, 2029], "avg_stars": 4.5, "players": [{"name": "Tai Bell", "cls": 2028, "pos": "PG", "ht": "6’3", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 25}, {"name": "Cayden Gaskins", "cls": 2029, "pos": "SF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 4}]}, {"name": "Oak Hill", "count": 2, "classes": [2027, 2029], "avg_stars": 4.5, "players": [{"name": "LJ Smith", "cls": 2027, "pos": "SG", "ht": "6’4", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 31}, {"name": "David Johnson", "cls": 2029, "pos": "PF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 6}]}, {"name": "Mt Zion Prep", "count": 2, "classes": [2027, 2029], "avg_stars": 4.0, "players": [{"name": "Zion Green", "cls": 2027, "pos": "PF", "ht": "6’9", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 54}, {"name": "Harlem Nunez", "cls": 2029, "pos": "PG", "ht": "6’4", "nat": "Dominican Republic", "flag": "🇩🇴", "stars": 4, "rank": 21}]}, {"name": "La Lumiere", "count": 2, "classes": [2027], "avg_stars": 4.0, "players": [{"name": "Devin Cleveland", "cls": 2027, "pos": "PG", "ht": "6’3", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 38}, {"name": "Ferlandes Wright", "cls": 2027, "pos": "PF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 94}]}, {"name": "Casademont Zaragoza", "count": 2, "classes": [2027, 2028], "avg_stars": 4.0, "players": [{"name": "Matija Lukic", "cls": 2027, "pos": "PG", "ht": "6’8", "nat": "Serbia", "flag": "🇷🇸", "stars": 4, "rank": 40}, {"name": "Soumalia Keita", "cls": 2028, "pos": "C", "ht": "6’11", "nat": "Mali", "flag": "🇲🇱", "stars": 4, "rank": 23}]}, {"name": "Huntington Prep", "count": 2, "classes": [2027, 2029], "avg_stars": 4.0, "players": [{"name": "Taj Saragba", "cls": 2027, "pos": "PF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 96}, {"name": "Tristan Edwards", "cls": 2029, "pos": "PF", "ht": "6’8", "nat": "Canada", "flag": "🇨🇦", "stars": 4, "rank": 19}]}, {"name": "Coronado", "count": 2, "classes": [2027, 2028], "avg_stars": 4.0, "players": [{"name": "Munir Greig", "cls": 2027, "pos": "SF", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 70}, {"name": "Devaughn Dorrough", "cls": 2028, "pos": "SF", "ht": "6’7", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 61}]}, {"name": "Wisconsin Lutheran", "count": 2, "classes": [2027, 2028], "avg_stars": 4.0, "players": [{"name": "Kager Knueppel", "cls": 2027, "pos": "PF", "ht": "6’9", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 44}, {"name": "Kinston Knueppel", "cls": 2028, "pos": "SG", "ht": "6’5", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 45}]}, {"name": "Sierra Canyon", "count": 2, "classes": [2028], "avg_stars": 4.0, "players": [{"name": "Josh Lowery", "cls": 2028, "pos": "SG", "ht": "6’4", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 24}, {"name": "JJ Sati-Grier", "cls": 2028, "pos": "PG", "ht": "5'11", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 52}]}, {"name": "Brewster Academy", "count": 2, "classes": [2028], "avg_stars": 4.0, "players": [{"name": "Michai White", "cls": 2028, "pos": "PG", "ht": "6’0", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 20}, {"name": "Kevin Wheatley Jr", "cls": 2028, "pos": "SF", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 39}]}, {"name": "Archbishop Spalding", "count": 2, "classes": [2028], "avg_stars": 4.0, "players": [{"name": "Nash Avery", "cls": 2028, "pos": "PF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 32}, {"name": "Braxton Bogard", "cls": 2028, "pos": "PF", "ht": "6’8", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 40}]}, {"name": "Crestwood Prep", "count": 2, "classes": [2028, 2029], "avg_stars": 4.0, "players": [{"name": "Isaiah Clarke", "cls": 2028, "pos": "PF", "ht": "6’8", "nat": "Canada", "flag": "🇨🇦", "stars": 4, "rank": 63}, {"name": "Jaylen Shepherd", "cls": 2029, "pos": "PG", "ht": "6’3", "nat": "Canada", "flag": "🇨🇦", "stars": 4, "rank": 26}]}, {"name": "Pike", "count": 2, "classes": [2027, 2028], "avg_stars": 4.0, "players": [{"name": "Jahari Miller", "cls": 2027, "pos": "SG", "ht": "6’2", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 72}, {"name": "Landon Lampley", "cls": 2028, "pos": "PF", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 30}]}, {"name": "Mt Bethel Christian", "count": 2, "classes": [2028, 2029], "avg_stars": 4.5, "players": [{"name": "Peter Julius", "cls": 2028, "pos": "PF", "ht": "6’9", "nat": "Nigeria", "flag": "🇳🇬", "stars": 4, "rank": 75}, {"name": "Cadien Hudson", "cls": 2029, "pos": "SF", "ht": "6’5", "nat": "USA", "flag": "🇺🇸", "stars": 5, "rank": 8}]}, {"name": "Briarcrest Christian", "count": 2, "classes": [2028], "avg_stars": 4.0, "players": [{"name": "Ian Archbold", "cls": 2028, "pos": "SG", "ht": "6’4", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 82}, {"name": "Joshua Huggins", "cls": 2028, "pos": "SF", "ht": "6’6", "nat": "USA", "flag": "🇺🇸", "stars": 4, "rank": 88}]}];
+function openRoster(idx){
+  const p=PROGRAMS[idx];
+  document.getElementById('roster-prog-name').textContent=p.name;
+  document.getElementById('roster-badge').textContent=p.count+' Prospects';
+  const clsStr=p.classes.map(c=>'Class of '+c).join(' · ');
+  const avgStr=p.avg_stars?p.avg_stars+' ★ avg':'';
+  document.getElementById('roster-meta-line').textContent=clsStr+(avgStr?' · '+avgStr:'');
+  const tbody=document.getElementById('roster-tbody');
+  tbody.innerHTML=p.players.map(function(pl){
+    return '<tr>'+
+      '<td class="tr-pos">'+pl.cls+'</td>'+
+      '<td><div class="tr-name">'+pl.name+'</div></td>'+
+      '<td class="tr-pos">'+pl.pos+'</td>'+
+      '<td class="tr-ht">'+pl.ht+'</td>'+
+      '<td><span class="flag">'+pl.flag+'</span> <span style="font-size:13px;color:rgba(255,255,255,0.6)">'+pl.nat+'</span></td>'+
+      '<td class="roster-stars-cell">'+'⭐'.repeat(pl.stars)+'</td>'+
+      '</tr>';
+  }).join('');
+  document.getElementById('programs-grid').style.display='none';
+  document.getElementById('roster-view').style.display='block';
+  window.scrollTo(0,0);
+}
+function closeRoster(){
+  document.getElementById('roster-view').style.display='none';
+  document.getElementById('programs-grid').style.display='';
+  window.scrollTo(0,0);
+}
+document.getElementById('programs-search').addEventListener('input',function(){
+  const q=this.value.toLowerCase();
+  let visible=0;
+  document.querySelectorAll('.program-card').forEach(function(card){
+    const match=card.dataset.name.includes(q);
+    card.style.display=match?'':'none';
+    if(match)visible++;
+  });
+  document.getElementById('programs-visible-count').textContent=visible;
 });
 </script>
 </body>
