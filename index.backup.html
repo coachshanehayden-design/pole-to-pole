@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pole 2 Pole — Global Prospect Rankings</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A96E;--gold-light:#E8D5A8;--gold-dark:#9B7A44;--gold-dim:rgba(201,169,110,0.12);
+  --black:#080808;--dark:#101010;--dark2:#181818;--dark3:#222222;--dark4:#2a2a2a;
+  --gray:#666;--gray-light:#999;--white:#FFFFFF;
+  --font-display:'Barlow Condensed',sans-serif;--font-body:'Barlow',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:var(--font-body)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,169,110,0.15);height:60px;display:flex;align-items:center;padding:0 40px;gap:40px}
+.nav-logo{font-family:var(--font-display);font-weight:900;font-size:22px;letter-spacing:0.06em;cursor:pointer}
+.nav-logo .two{color:var(--gold)}
+.nav-links{display:flex;gap:0;flex:1}
+.nav-link{font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);padding:0 18px;height:60px;display:flex;align-items:center;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-right{display:flex;gap:10px;align-items:center;margin-left:auto}
+.btn-ghost{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:7px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:3px;cursor:pointer;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-gold{font-family:var(--font-display);font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:8px 18px;border-radius:3px;cursor:pointer;transition:all 0.2s}
+.btn-gold:hover{background:var(--gold-light)}
+.page{display:none;min-height:100vh;padding-top:60px}
+.page.active{display:block}
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:100px 60px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,169,110,0.08) 0%,transparent 60%),linear-gradient(180deg,rgba(8,8,8,0.93) 0%,rgba(13,12,8,0.9) 100%);z-index:1}
+.hero-photo{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1546519638405-a2b2a4e0a4c3?w=1600&q=80&auto=format&fit=crop');background-size:cover;background-position:center 30%;opacity:0.08}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,110,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-eyebrow{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hero-h1{font-family:var(--font-display);font-size:clamp(64px,8vw,110px);font-weight:900;line-height:0.92;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:32px;max-width:900px}
+.hero-h1 .gold{color:var(--gold)}
+.hero-sub{font-size:17px;font-weight:300;color:rgba(255,255,255,0.6);max-width:520px;line-height:1.7;margin-bottom:48px}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-primary{font-family:var(--font-display);font-size:14px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:14px 32px;border-radius:3px;cursor:pointer;transition:all 0.2s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-outline{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);padding:13px 30px;border:1px solid rgba(255,255,255,0.2);border-radius:3px;cursor:pointer;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{position:absolute;right:60px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:32px}
+.hero-stat{text-align:right}
+.hero-stat-num{font-family:var(--font-display);font-size:52px;font-weight:900;color:var(--gold);line-height:1}
+.hero-stat-label{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px}
+.ticker-wrap{background:var(--gold);overflow:hidden;padding:8px 0}
+.ticker-inner{display:flex;gap:0;animation:ticker 30s linear infinite;white-space:nowrap;width:max-content}
+.ticker-item{font-family:var(--font-display);font-size:12px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--black);padding:0 40px;display:flex;align-items:center;gap:12px}
+.ticker-dot{width:4px;height:4px;background:rgba(0,0,0,0.3);border-radius:50%;flex-shrink:0}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.section{padding:80px 60px}
+.section-label{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.section-h2{font-family:var(--font-display);font-size:clamp(36px,4vw,52px);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:48px}
+.featured-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--dark3)}
+.featured-col{background:var(--dark);padding:0}
+.col-header{padding:20px 28px;border-bottom:1px solid var(--dark3);display:flex;align-items:center;justify-content:space-between}
+.col-title{font-family:var(--font-display);font-size:14px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase}
+.col-meta{font-size:11px;color:var(--gray)}
+.player-row{display:grid;grid-template-columns:36px 48px 1fr auto;align-items:center;gap:14px;padding:14px 24px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:background 0.15s}
+.player-row:hover{background:rgba(201,169,110,0.05)}
+.player-row:last-child{border-bottom:none}
+.rank-num{font-family:var(--font-display);font-size:20px;font-weight:900;color:var(--gold-dark);text-align:center}
+.rank-num.top3{color:var(--gold);font-size:24px}
+.player-name{font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:0.02em}
+.player-details{font-size:12px;color:var(--gray-light);margin-top:2px;display:flex;gap:8px;align-items:center}
+.flag{font-size:14px}
+.pos-badge{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.08em;background:var(--dark3);color:var(--gray-light);padding:2px 7px;border-radius:2px}
+.intl-badge{font-family:var(--font-display);font-size:9px;font-weight:700;letter-spacing:0.08em;background:rgba(201,169,110,0.15);color:var(--gold);padding:2px 6px;border-radius:2px}
+.player-right{text-align:right}
+.player-ht{font-family:var(--font-display);font-size:14px;font-weight:600;color:rgba(255,255,255,0.6)}
+.player-school{font-size:11px;color:var(--gray);margin-top:2px;max-width:120px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--dark3)}
+.rise-card{background:var(--dark);padding:28px;cursor:pointer;transition:background 0.2s;position:relative;overflow:hidden}
+.rise-card:hover{background:var(--dark2)}
+.rise-card::before{content:'▲';position:absolute;top:20px;right:20px;font-size:10px;color:var(--gold);font-weight:900}
+.rise-rank-change{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--gold);margin-bottom:10px}
+.rise-name{font-family:var(--font-display);font-size:22px;font-weight:900;text-transform:uppercase;line-height:1.1;margin-bottom:8px}
+.rise-meta{font-size:12px;color:var(--gray-light);display:flex;gap:10px;flex-wrap:wrap}
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px;background:var(--dark3)}
+.country-card{background:var(--dark);padding:24px 28px;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;gap:16px}
+.country-card:hover{background:var(--dark2)}
+.country-flag{font-size:28px;line-height:1}
+.country-name{font-family:var(--font-display);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em}
+.country-count{font-size:12px;color:var(--gray-light);margin-top:2px}
+.rankings-header{padding:60px 60px 0;border-bottom:1px solid var(--dark3)}
+.rankings-title{font-family:var(--font-display);font-size:clamp(40px,5vw,64px);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:20px}
+.class-tabs{display:flex;gap:0;margin-top:32px}
+.class-tab{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);padding:14px 28px;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.2s}
+.class-tab:hover,.class-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.rankings-controls{padding:20px 60px;display:flex;gap:16px;align-items:center;border-bottom:1px solid var(--dark3);background:var(--dark);flex-wrap:wrap}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--dark2);border:1px solid var(--dark4);border-radius:3px;padding:9px 16px;flex:1;min-width:200px;max-width:360px}
+.search-box input{background:none;border:none;outline:none;color:var(--white);font-family:var(--font-body);font-size:14px;width:100%}
+.search-box input::placeholder{color:var(--gray)}
+.filter-btn{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:9px 18px;border:1px solid var(--dark4);border-radius:3px;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{border-color:var(--gold);color:var(--gold)}
+.rankings-table-wrap{padding:0 60px 80px;overflow-x:auto}
+.rankings-table{width:100%;border-collapse:collapse;min-width:600px}
+.rankings-table th{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);padding:16px 12px;text-align:left;border-bottom:1px solid var(--dark3);white-space:nowrap}
+.rankings-table th:first-child{padding-left:20px;width:56px}
+.rankings-table td{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle}
+.rankings-table td:first-child{padding-left:20px}
+.rankings-table tr{cursor:pointer;transition:background 0.15s}
+.rankings-table tr:hover td{background:rgba(201,169,110,0.04)}
+.tr-rank{font-family:var(--font-display);font-size:22px;font-weight:900;color:var(--gold-dark)}
+.tr-rank.top3{color:var(--gold);font-size:26px}
+.tr-name{font-family:var(--font-display);font-size:18px;font-weight:700;letter-spacing:0.02em}
+.tr-country{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.7);margin-top:3px}
+.tr-pos{font-family:var(--font-display);font-size:13px;font-weight:700;color:rgba(255,255,255,0.5)}
+.tr-ht{font-family:var(--font-display);font-size:15px;font-weight:600;color:rgba(255,255,255,0.7)}
+.tr-school{font-size:13px;color:var(--gray-light);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr-intl{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.06em;background:rgba(201,169,110,0.15);color:var(--gold);padding:3px 8px;border-radius:2px}
+.tr-us{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.06em;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);padding:3px 8px;border-radius:2px}
+.class-view{display:none}
+.class-view.active{display:table-row-group}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:80px 60px}
+.method-intro{grid-column:1/-1;max-width:700px}
+.method-intro p{font-size:17px;line-height:1.8;color:rgba(255,255,255,0.7);margin-bottom:20px}
+.method-pillar{background:var(--dark);border:1px solid var(--dark3);padding:32px;border-top:2px solid var(--gold)}
+.pillar-num{font-family:var(--font-display);font-size:48px;font-weight:900;color:var(--gold-dim);line-height:1;margin-bottom:12px}
+.pillar-title{font-family:var(--font-display);font-size:22px;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+.pillar-body{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7}
+.pillar-criteria{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.criteria-tag{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--dark3);color:var(--gray-light);padding:5px 12px;border-radius:2px}
+.about-hero{padding:100px 60px 60px;max-width:860px}
+.about-h1{font-family:var(--font-display);font-size:clamp(48px,6vw,80px);font-weight:900;text-transform:uppercase;line-height:0.95;margin-bottom:28px}
+.about-h1 .gold{color:var(--gold)}
+.about-body{font-size:16px;color:rgba(255,255,255,0.65);line-height:1.8}
+.about-body p{margin-bottom:20px}
+.nl-section{padding:80px 60px;background:var(--dark);border-top:1px solid var(--dark3);border-bottom:1px solid var(--dark3)}
+.nl-inner{max-width:560px}
+.nl-h2{font-family:var(--font-display);font-size:clamp(32px,4vw,48px);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:12px}
+.nl-sub{font-size:15px;color:rgba(255,255,255,0.5);margin-bottom:32px}
+.nl-form{display:flex;gap:10px}
+.nl-input{flex:1;background:var(--dark2);border:1px solid var(--dark4);border-radius:3px;padding:13px 18px;color:var(--white);font-family:var(--font-body);font-size:14px;outline:none;transition:border-color 0.2s}
+.nl-input:focus{border-color:var(--gold)}
+.nl-input::placeholder{color:var(--gray)}
+.nl-btn{font-family:var(--font-display);font-size:13px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:var(--gold);color:var(--black);padding:13px 24px;border-radius:3px;cursor:pointer;white-space:nowrap;transition:background 0.2s}
+.nl-btn:hover{background:var(--gold-light)}
+.nl-note{font-size:11px;color:var(--gray);margin-top:12px}
+footer{background:var(--dark);border-top:1px solid var(--dark3);padding:60px 60px 32px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand{font-family:var(--font-display);font-size:28px;font-weight:900;letter-spacing:0.04em;margin-bottom:12px}
+.footer-brand .two{color:var(--gold)}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;max-width:280px;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.soc{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);transition:color 0.2s;cursor:pointer}
+.soc:hover{color:var(--gold)}
+.footer-col-title{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links li a{font-size:13px;color:rgba(255,255,255,0.4);transition:color 0.2s;cursor:pointer}
+.footer-links li a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid var(--dark3);padding-top:24px;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:12px;color:rgba(255,255,255,0.25);cursor:pointer}
+.footer-legal a:hover{color:rgba(255,255,255,0.5)}
+@media(max-width:900px){
+  .hero-stats{display:none}.hero{padding:80px 28px 60px}.section{padding:60px 28px}
+  .featured-grid{grid-template-columns:1fr}.rise-grid{grid-template-columns:1fr}
+  .rankings-header,.rankings-controls,.rankings-table-wrap{padding-left:28px;padding-right:28px}
+  .method-grid{grid-template-columns:1fr;padding:60px 28px;gap:32px}
+  .about-hero{padding:80px 28px 40px}.nl-section{padding:60px 28px}
+  .footer-top{grid-template-columns:1fr 1fr}.footer{padding:60px 28px 32px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">POLE<span class="two">2</span>POLE</div>
+  <div class="nav-links">
+    <div class="nav-link active" onclick="showPage('home');setActive(this)">Home</div>
+    <div class="nav-link" onclick="showPage('rankings');setActive(this)">Rankings</div>
+    <div class="nav-link" onclick="showPage('methodology');setActive(this)">Methodology</div>
+    <div class="nav-link" onclick="showPage('about');setActive(this)">About</div>
+  </div>
+  <div class="nav-right">
+    <button class="btn-ghost">Sign In</button>
+    <button class="btn-gold">Subscribe</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-photo"></div><div class="hero-bg"></div><div class="hero-grid"></div>
+    <div style="position:relative;z-index:2">
+      <div class="hero-eyebrow">Global Basketball Intelligence</div>
+      <h1 class="hero-h1">The World's<br>Prospect <span class="gold">Rankings.</span></h1>
+      <p class="hero-sub">The only platform that integrates U.S. and international youth basketball talent into one credible, unbiased ranking system — from pole to pole.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('rankings')">View Rankings</button>
+        <button class="btn-outline" onclick="showPage('methodology')">Our Methodology</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Countries</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">175+</div><div class="hero-stat-label">Prospects Ranked</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Class Years</div></div>
+    </div>
+  </section>
+  <div class="ticker-wrap"><div class="ticker-inner">
+    <div class="ticker-item"><span class="ticker-dot"></span> 2027 Global Rankings — 100 Prospects Ranked</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> 2028 Rankings — Top 50 + Watchlist</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> 2029 Early Rankings — Now Live</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> International Spotlight: France · Serbia · Burkina Faso</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> New: Country-by-Country Index Coming Soon</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> 2027 Global Rankings — 100 Prospects Ranked</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> 2028 Rankings — Top 50 + Watchlist</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> 2029 Early Rankings — Now Live</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> International Spotlight: France · Serbia · Burkina Faso</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> New: Country-by-Country Index Coming Soon</div>
+  </div></div>
+
+  <section class="section" style="padding-top:64px;padding-bottom:24px">
+    <div class="section-label">Featured</div>
+    <h2 class="section-h2">Top Prospects by Class</h2>
+  </section>
+  <div style="padding:0 60px 80px">
+    <div class="featured-grid">
+      <div class="featured-col">
+        <div class="col-header"><div class="col-title">Class of 2027</div><div class="col-meta">Top 10 · Global</div></div>
+<div class="player-row"><div class="rank-num top3">1</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">NS</span></div><div class="player-info"><div class="player-name">Nathan Soliman</div><div class="player-details"><span class="flag">🇫🇷</span><span class="pos-badge">PF</span><span class="intl-badge">INTL</span></div></div><div class="player-right"><div class="player-ht">6'9</div><div class="player-school">INSEP</div></div></div>
+<div class="player-row"><div class="rank-num top3">2</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">CR</span></div><div class="player-info"><div class="player-name">CJ Rosser</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PF</span></div></div><div class="player-right"><div class="player-ht">6'10</div><div class="player-school">Southeastern Prep</div></div></div>
+<div class="player-row"><div class="rank-num top3">3</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">NK</span></div><div class="player-info"><div class="player-name">Nikola Kusturica</div><div class="player-details"><span class="flag">🇷🇸</span><span class="pos-badge">SF</span><span class="intl-badge">INTL</span></div></div><div class="player-right"><div class="player-ht">6'8</div><div class="player-school">FC Barcelona</div></div></div>
+<div class="player-row"><div class="rank-num">4</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#378ADD33,#185FA522);border:1px solid #378ADD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#378ADD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#378ADD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#378ADD;letter-spacing:0.05em;z-index:1">BB</span></div><div class="player-info"><div class="player-name">Beckham Black</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PG</span></div></div><div class="player-right"><div class="player-ht">6'3</div><div class="player-school">Southeastern Prep</div></div></div>
+<div class="player-row"><div class="rank-num">5</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#378ADD33,#185FA522);border:1px solid #378ADD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#378ADD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#378ADD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#378ADD;letter-spacing:0.05em;z-index:1">JD</span></div><div class="player-info"><div class="player-name">Jalen Davis</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PG</span></div></div><div class="player-right"><div class="player-ht">6'3</div><div class="player-school">Bremerton</div></div></div>
+<div class="player-row"><div class="rank-num">6</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#378ADD33,#185FA522);border:1px solid #378ADD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#378ADD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#378ADD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#378ADD;letter-spacing:0.05em;z-index:1">NA</span></div><div class="player-info"><div class="player-name">Nasir Anderson</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PG</span></div></div><div class="player-right"><div class="player-ht">6'2</div><div class="player-school">Prolific Prep</div></div></div>
+<div class="player-row"><div class="rank-num">7</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">MJ</span></div><div class="player-info"><div class="player-name">Malachi Jordan</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SF</span></div></div><div class="player-right"><div class="player-ht">6'7</div><div class="player-school">Dream City Christian</div></div></div>
+<div class="player-row"><div class="rank-num">8</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">MS</span></div><div class="player-info"><div class="player-name">Marcus Spears</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SF</span></div></div><div class="player-right"><div class="player-ht">6'7</div><div class="player-school">Dynamic Prep</div></div></div>
+<div class="player-row"><div class="rank-num">9</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">PO</span></div><div class="player-info"><div class="player-name">Paul Osaruyi</div><div class="player-details"><span class="flag">🇨🇦</span><span class="pos-badge">PF</span><span class="intl-badge">INTL</span></div></div><div class="player-right"><div class="player-ht">6'9</div><div class="player-school">Bella Vista</div></div></div>
+<div class="player-row"><div class="rank-num">10</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#7F77DD33,#534AB722);border:1px solid #7F77DD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#7F77DD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#7F77DD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#7F77DD;letter-spacing:0.05em;z-index:1">JP</span></div><div class="player-info"><div class="player-name">Jordan Page</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SG</span></div></div><div class="player-right"><div class="player-ht">6'5</div><div class="player-school">Broughton</div></div></div>
+
+        <div style="padding:16px 28px;border-top:1px solid var(--dark3)"><button class="btn-outline" style="font-size:12px;padding:9px 20px" onclick="showPage('rankings');setActiveTab('2027')">Full 2027 Rankings →</button></div>
+      </div>
+      <div class="featured-col">
+        <div class="col-header"><div class="col-title">Class of 2028</div><div class="col-meta">Top 10 · Global</div></div>
+<div class="player-row"><div class="rank-num top3">1</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#7F77DD33,#534AB722);border:1px solid #7F77DD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#7F77DD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#7F77DD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#7F77DD;letter-spacing:0.05em;z-index:1">AW</span></div><div class="player-info"><div class="player-name">AJ Williams</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SG</span></div></div><div class="player-right"><div class="player-ht">6’6</div><div class="player-school">ELCA</div></div></div>
+<div class="player-row"><div class="rank-num top3">2</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">IH</span></div><div class="player-info"><div class="player-name">Isaiah Hamilton</div><div class="player-details"><span class="flag">🇨🇦</span><span class="pos-badge">SF</span><span class="intl-badge">INTL</span></div></div><div class="player-right"><div class="player-ht">6’6</div><div class="player-school">Crestwood Prep</div></div></div>
+<div class="player-row"><div class="rank-num top3">3</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#378ADD33,#185FA522);border:1px solid #378ADD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#378ADD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#378ADD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#378ADD;letter-spacing:0.05em;z-index:1">RR</span></div><div class="player-info"><div class="player-name">Rhys Robinson</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PG</span></div></div><div class="player-right"><div class="player-ht">6’7</div><div class="player-school">Real Madrid</div></div></div>
+<div class="player-row"><div class="rank-num">4</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#7F77DD33,#534AB722);border:1px solid #7F77DD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#7F77DD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#7F77DD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#7F77DD;letter-spacing:0.05em;z-index:1">CH</span></div><div class="player-info"><div class="player-name">Colton Hiller</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SG</span></div></div><div class="player-right"><div class="player-ht">6’6</div><div class="player-school">Coatesville</div></div></div>
+<div class="player-row"><div class="rank-num">5</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#1D9E7533,#0F6E5622);border:1px solid #1D9E7555;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#1D9E75" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#1D9E75" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#1D9E75;letter-spacing:0.05em;z-index:1">BT</span></div><div class="player-info"><div class="player-name">Bamba Touray</div><div class="player-details"><span class="flag">🇸🇳</span><span class="pos-badge">C</span><span class="intl-badge">INTL</span></div></div><div class="player-right"><div class="player-ht">7’0</div><div class="player-school">IMG Academy</div></div></div>
+<div class="player-row"><div class="rank-num">6</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">EW</span></div><div class="player-info"><div class="player-name">Evan Willis</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SF</span></div></div><div class="player-right"><div class="player-ht">6’8</div><div class="player-school">Mater Dei</div></div></div>
+<div class="player-row"><div class="rank-num">7</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">DO</span></div><div class="player-info"><div class="player-name">DJ Okoth</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SF</span></div></div><div class="player-right"><div class="player-ht">6’7</div><div class="player-school">Bartlett</div></div></div>
+<div class="player-row"><div class="rank-num">8</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#7F77DD33,#534AB722);border:1px solid #7F77DD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#7F77DD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#7F77DD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#7F77DD;letter-spacing:0.05em;z-index:1">AD</span></div><div class="player-info"><div class="player-name">Adan Diggs</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SG</span></div></div><div class="player-right"><div class="player-ht">6’4</div><div class="player-school">Williams Field</div></div></div>
+<div class="player-row"><div class="rank-num">9</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">SS</span></div><div class="player-info"><div class="player-name">Shalen Sheppard</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PF</span></div></div><div class="player-right"><div class="player-ht">6’8</div><div class="player-school">Crossroads</div></div></div>
+<div class="player-row"><div class="rank-num">10</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">BL</span></div><div class="player-info"><div class="player-name">Bentley Lusakueno</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PF</span></div></div><div class="player-right"><div class="player-ht">6’10</div><div class="player-school">Woodward</div></div></div>
+
+        <div style="padding:16px 28px;border-top:1px solid var(--dark3)"><button class="btn-outline" style="font-size:12px;padding:9px 20px" onclick="showPage('rankings');setActiveTab('2028')">Full 2028 Rankings →</button></div>
+      </div>
+      <div class="featured-col">
+        <div class="col-header"><div class="col-title">Class of 2029</div><div class="col-meta">Top 10 · Early Release</div></div>
+<div class="player-row"><div class="rank-num top3">1</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#1D9E7533,#0F6E5622);border:1px solid #1D9E7555;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#1D9E75" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#1D9E75" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#1D9E75;letter-spacing:0.05em;z-index:1">MD</span></div><div class="player-info"><div class="player-name">Mohamed Dabone</div><div class="player-details"><span class="flag">🇧🇫</span><span class="pos-badge">C</span><span class="intl-badge">INTL</span></div></div><div class="player-right"><div class="player-ht">6'11</div><div class="player-school">FC Barcelona</div></div></div>
+<div class="player-row"><div class="rank-num top3">2</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">DM</span></div><div class="player-info"><div class="player-name">Draydne McDaniel</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PF</span></div></div><div class="player-right"><div class="player-ht">6'8</div><div class="player-school">Prolific Prep</div></div></div>
+<div class="player-row"><div class="rank-num top3">3</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#378ADD33,#185FA522);border:1px solid #378ADD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#378ADD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#378ADD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#378ADD;letter-spacing:0.05em;z-index:1">JC</span></div><div class="player-info"><div class="player-name">JJ Crawford</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PG</span></div></div><div class="player-right"><div class="player-ht">6'3</div><div class="player-school">Rainier Beach</div></div></div>
+<div class="player-row"><div class="rank-num">4</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">CG</span></div><div class="player-info"><div class="player-name">Cayden Gaskins</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PF</span></div></div><div class="player-right"><div class="player-ht">6'8</div><div class="player-school">Columbus</div></div></div>
+<div class="player-row"><div class="rank-num">5</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#7F77DD33,#534AB722);border:1px solid #7F77DD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#7F77DD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#7F77DD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#7F77DD;letter-spacing:0.05em;z-index:1">RE</span></div><div class="player-info"><div class="player-name">RJ Evans</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SG</span></div></div><div class="player-right"><div class="player-ht">6'7</div><div class="player-school">SLAM HS</div></div></div>
+<div class="player-row"><div class="rank-num">6</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#D85A3033,#993C1D22);border:1px solid #D85A3055;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#D85A30" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#D85A30" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#D85A30;letter-spacing:0.05em;z-index:1">DJ</span></div><div class="player-info"><div class="player-name">David Johnson</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PF</span></div></div><div class="player-right"><div class="player-ht">6'8</div><div class="player-school">Oak Hill</div></div></div>
+<div class="player-row"><div class="rank-num">7</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#378ADD33,#185FA522);border:1px solid #378ADD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#378ADD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#378ADD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#378ADD;letter-spacing:0.05em;z-index:1">WJ</span></div><div class="player-info"><div class="player-name">Will Conroy Jr</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PG</span></div></div><div class="player-right"><div class="player-ht">5'11</div><div class="player-school">Village Christian</div></div></div>
+<div class="player-row"><div class="rank-num">8</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#378ADD33,#185FA522);border:1px solid #378ADD55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#378ADD" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#378ADD" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#378ADD;letter-spacing:0.05em;z-index:1">JB</span></div><div class="player-info"><div class="player-name">Josiah Brooks</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">PG</span></div></div><div class="player-right"><div class="player-ht">6'2</div><div class="player-school">Slam Miami</div></div></div>
+<div class="player-row"><div class="rank-num">9</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">FK</span></div><div class="player-info"><div class="player-name">Flory Kuminga</div><div class="player-details"><span class="flag">🇨🇩</span><span class="pos-badge">SF</span><span class="intl-badge">INTL</span></div></div><div class="player-right"><div class="player-ht">6'6</div><div class="player-school">TPS</div></div></div>
+<div class="player-row"><div class="rank-num">10</div><div style="width:48px;height:48px;flex-shrink:0;border-radius:6px;background:linear-gradient(135deg,#C9A96E33,#9B7A4422);border:1px solid #C9A96E55;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden"><svg viewBox="0 0 48 48" width="48" height="48" style="position:absolute;inset:0"><circle cx="24" cy="17" r="9" fill="#C9A96E" opacity="0.5"/><ellipse cx="24" cy="42" rx="16" ry="12" fill="#C9A96E" opacity="0.35"/></svg><span style="position:relative;font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:14px;color:#C9A96E;letter-spacing:0.05em;z-index:1">BG</span></div><div class="player-info"><div class="player-name">Bronx Ganaway</div><div class="player-details"><span class="flag">🇺🇸</span><span class="pos-badge">SF</span></div></div><div class="player-right"><div class="player-ht">6'7</div><div class="player-school">Boonville</div></div></div>
+
+        <div style="padding:16px 28px;border-top:1px solid var(--dark3)"><button class="btn-outline" style="font-size:12px;padding:9px 20px" onclick="showPage('rankings');setActiveTab('2029')">Full 2029 Rankings →</button></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--dark);border-top:1px solid var(--dark3);padding-top:64px;padding-bottom:0">
+    <div class="section-label">Spotlight</div>
+    <h2 class="section-h2">International<br>Standouts</h2>
+    <div class="rise-grid" style="margin-top:0;margin-bottom:80px">
+      <div class="rise-card"><div class="rise-rank-change">▲ #1 · Class of 2027</div><div class="rise-name">Nathan Soliman</div><div class="rise-meta"><span>🇫🇷 France</span><span>PF · 6'9</span><span>INSEP</span></div></div>
+<div class="rise-card"><div class="rise-rank-change">▲ #3 · Class of 2027</div><div class="rise-name">Nikola Kusturica</div><div class="rise-meta"><span>🇷🇸 Serbia</span><span>SF · 6'8</span><span>FC Barcelona</span></div></div>
+<div class="rise-card"><div class="rise-rank-change">▲ #1 · Class of 2029</div><div class="rise-name">Mohamed Dabone</div><div class="rise-meta"><span>🇧🇫 Burkina Faso</span><span>C · 6'11</span><span>FC Barcelona</span></div></div>
+
+    </div>
+  </section>
+
+  <section class="section" style="border-top:1px solid var(--dark3)">
+    <div class="section-label">International</div>
+    <h2 class="section-h2">Country Index</h2>
+    <div class="country-grid">
+      <div class="country-card"><div class="country-flag">🇫🇷</div><div><div class="country-name">France</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇷🇸</div><div><div class="country-name">Serbia</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇩🇪</div><div><div class="country-name">Germany</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇨🇦</div><div><div class="country-name">Canada</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇦🇺</div><div><div class="country-name">Australia</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card"><div class="country-flag">🇧🇷</div><div><div class="country-name">Brazil</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇳🇬</div><div><div class="country-name">Nigeria</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card"><div class="country-flag">🇧🇫</div><div><div class="country-name">Burkina Faso</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇱🇻</div><div><div class="country-name">Latvia</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇮🇹</div><div><div class="country-name">Italy</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card"><div class="country-flag">🇹🇷</div><div><div class="country-name">Turkey</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card"><div class="country-flag">🇩🇰</div><div><div class="country-name">Denmark</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card"><div class="country-flag">🇸🇸</div><div><div class="country-name">South Sudan</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card"><div class="country-flag">🇨🇩</div><div><div class="country-name">DRC</div><div class="country-count">Multiple ranked prospects</div></div></div>
+      <div class="country-card"><div class="country-flag">🇩🇴</div><div><div class="country-name">Dom. Republic</div><div class="country-count">Ranked prospect</div></div></div>
+      <div class="country-card"><div class="country-flag">🇨🇮</div><div><div class="country-name">Cote D'Ivoire</div><div class="country-count">Ranked prospect</div></div></div>
+    </div>
+  </section>
+
+  <section class="nl-section">
+    <div class="nl-inner">
+      <div class="section-label">Stay Informed</div>
+      <h2 class="nl-h2">Rankings Drop<br>In Your Inbox.</h2>
+      <p class="nl-sub">Get every rankings update, international spotlight, and riser alert before anyone else.</p>
+      <div class="nl-form">
+        <input class="nl-input" type="email" placeholder="your@email.com">
+        <button class="nl-btn">Subscribe</button>
+      </div>
+      <div class="nl-note">No spam. Unsubscribe anytime.</div>
+    </div>
+  </section>
+</div>
+
+<!-- RANKINGS -->
+<div id="page-rankings" class="page">
+  <div class="rankings-header">
+    <div class="section-label" style="margin-top:20px">Global Prospect Rankings</div>
+    <h1 class="rankings-title">Class Rankings</h1>
+    <div class="class-tabs">
+      <div class="class-tab active" onclick="setActiveTab('2027')">Class of 2027</div>
+      <div class="class-tab" onclick="setActiveTab('2028')">Class of 2028</div>
+      <div class="class-tab" onclick="setActiveTab('2029')">Class of 2029</div>
+    </div>
+  </div>
+  <div class="rankings-controls">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="search-input" placeholder="Search players, countries, schools..." oninput="filterTable()">
+    </div>
+    <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+    <button class="filter-btn" onclick="setFilter(this,'usa')">🇺🇸 USA</button>
+    <button class="filter-btn" onclick="setFilter(this,'intl')">🌍 International</button>
+    <button class="filter-btn" onclick="setFilter(this,'pg')">PG</button>
+    <button class="filter-btn" onclick="setFilter(this,'sg')">SG</button>
+    <button class="filter-btn" onclick="setFilter(this,'sf')">SF</button>
+    <button class="filter-btn" onclick="setFilter(this,'pf')">PF</button>
+    <button class="filter-btn" onclick="setFilter(this,'c')">C</button>
+  </div>
+  <div class="rankings-table-wrap">
+    <table class="rankings-table" id="rankings-table">
+      <thead><tr>
+        <th>#</th><th>Player</th><th>Pos</th><th>Ht</th><th>School / Club</th><th>Type</th>
+      </tr></thead>
+      <tbody id="tbody-2027" class="class-view active">
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank top3">1</td><td><div class="tr-name">Nathan Soliman</div><div class="tr-country"><span>🇫🇷</span> France</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'9</td><td class="tr-school">INSEP</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank top3">2</td><td><div class="tr-name">CJ Rosser</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'10</td><td class="tr-school">Southeastern Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank top3">3</td><td><div class="tr-name">Nikola Kusturica</div><div class="tr-country"><span>🇷🇸</span> Serbia</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'8</td><td class="tr-school">FC Barcelona</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">4</td><td><div class="tr-name">Beckham Black</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'3</td><td class="tr-school">Southeastern Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">5</td><td><div class="tr-name">Jalen Davis</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'3</td><td class="tr-school">Bremerton</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">6</td><td><div class="tr-name">Nasir Anderson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'2</td><td class="tr-school">Prolific Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">7</td><td><div class="tr-name">Malachi Jordan</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'7</td><td class="tr-school">Dream City Christian</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">8</td><td><div class="tr-name">Marcus Spears</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'7</td><td class="tr-school">Dynamic Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">9</td><td><div class="tr-name">Paul Osaruyi</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'9</td><td class="tr-school">Bella Vista</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">10</td><td><div class="tr-name">Jordan Page</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'5</td><td class="tr-school">Broughton</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">11</td><td><div class="tr-name">Reese Alston</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'3</td><td class="tr-school">Second Baptist</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">12</td><td><div class="tr-name">Cayden Daughtry</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'11</td><td class="tr-school">Calvary Christian</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">13</td><td><div class="tr-name">King Gibson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'5</td><td class="tr-school">SPIRE</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">14</td><td><div class="tr-name">Adan Diggs</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'4</td><td class="tr-school">Williams Field</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">15</td><td><div class="tr-name">Moussa Kamissoko</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">LuHi</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">16</td><td><div class="tr-name">Darius Wabbington</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6'11</td><td class="tr-school">Sunnyslope AZ</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">17</td><td><div class="tr-name">Isaiah Hill</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6'10</td><td class="tr-school">Pike (IN)</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">18</td><td><div class="tr-name">Davion Thompson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'2</td><td class="tr-school">Link Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">19</td><td><div class="tr-name">NaVorro Bowman Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'3</td><td class="tr-school">Notre Dame (SO)</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">20</td><td><div class="tr-name">Demarcus Henry</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'7</td><td class="tr-school">AZ Compass Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sg"><td class="tr-rank">21</td><td><div class="tr-name">Fabian Kayser</div><div class="tr-country"><span>🇩🇪</span> Germany</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'8</td><td class="tr-school">Real Madrid</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">22</td><td><div class="tr-name">Anderson Diaz</div><div class="tr-country"><span>🇩🇴</span> Dom. Republic</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'0</td><td class="tr-school">Cold Hearts (OTE)</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">23</td><td><div class="tr-name">Javon Bardwell</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">RWE</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">24</td><td><div class="tr-name">Lewis Uvwo</div><div class="tr-country"><span>🇳🇬</span> Nigeria</div></td><td class="tr-pos">C</td><td class="tr-ht">6'10</td><td class="tr-school">Prolific Prep</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">25</td><td><div class="tr-name">Dawson Battie</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">St Mark's</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">26</td><td><div class="tr-name">Gabe Nesmith</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'5</td><td class="tr-school">City Reapers</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">27</td><td><div class="tr-name">Luke Paul</div><div class="tr-country"><span>🇦🇺</span> Australia</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'6</td><td class="tr-school">Centre of Excellence</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">28</td><td><div class="tr-name">Jarvis Hayes Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'6</td><td class="tr-school">Woodward</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">29</td><td><div class="tr-name">Josh Leonard</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'6</td><td class="tr-school">Wilson (SC)</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">30</td><td><div class="tr-name">LJ Smith</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'4</td><td class="tr-school">Oak Hill</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">31</td><td><div class="tr-name">Kam Mercer</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'5</td><td class="tr-school">Princeton High School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">32</td><td><div class="tr-name">Jaxson Davis</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'1</td><td class="tr-school">Warrren</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">33</td><td><div class="tr-name">Dooney Johnson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'6</td><td class="tr-school">Juneau</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">34</td><td><div class="tr-name">Kager Knueppel</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'9</td><td class="tr-school">Wisconsin Lutheran</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">35</td><td><div class="tr-name">Donovan Davis</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Freedom</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">36</td><td><div class="tr-name">Chase Lumpkin</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'4</td><td class="tr-school">McEachern</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">37</td><td><div class="tr-name">Oneal Delancy</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'4</td><td class="tr-school">Montverde</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">38</td><td><div class="tr-name">Devin Cleveland</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'3</td><td class="tr-school">La Lumiere</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">39</td><td><div class="tr-name">Ahmad Hutson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Ruston HS</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">40</td><td><div class="tr-name">Matija Lukic</div><div class="tr-country"><span>🇷🇸</span> Serbia</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'8</td><td class="tr-school">Casademont Zaragoza</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">41</td><td><div class="tr-name">Scottie Adkinson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'4</td><td class="tr-school">Webster Groves</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">42</td><td><div class="tr-name">Antonio Pemberton</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'1</td><td class="tr-school">Brewster</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">43</td><td><div class="tr-name">Caleb Ourigou</div><div class="tr-country"><span>🇨🇮</span> Cote D'Ivoire</div></td><td class="tr-pos">C</td><td class="tr-ht">6'10</td><td class="tr-school">Woodmere Academy</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">44</td><td><div class="tr-name">Chase Branham</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'4</td><td class="tr-school">Logan-Rogersville</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">45</td><td><div class="tr-name">Jason Gardner Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'0</td><td class="tr-school">Fishers High School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">46</td><td><div class="tr-name">Cherif Millogo</div><div class="tr-country"><span>🇧🇫</span> Burkina Faso</div></td><td class="tr-pos">C</td><td class="tr-ht">7'2</td><td class="tr-school">St Francis</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">47</td><td><div class="tr-name">Zion Green</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'9</td><td class="tr-school">Mt Zion Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">48</td><td><div class="tr-name">Tyran Frazier</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'10</td><td class="tr-school">Iowa United</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">49</td><td><div class="tr-name">Kevin Savage</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'11</td><td class="tr-school">Wheeler</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">50</td><td><div class="tr-name">Jaylan Mitchell</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'8</td><td class="tr-school">OTE</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">51</td><td><div class="tr-name">Jaydn Jenkins</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6'9</td><td class="tr-school">—</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">52</td><td><div class="tr-name">Eduardo Santos</div><div class="tr-country"><span>🇧🇷</span> Brazil</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'9</td><td class="tr-school">Pinheiros</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">53</td><td><div class="tr-name">J'Lon Lyons</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'0</td><td class="tr-school">Clinton Grace</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">54</td><td><div class="tr-name">Jeremy Jenkins</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'9</td><td class="tr-school">Riviera Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">55</td><td><div class="tr-name">Howard Williams</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'5</td><td class="tr-school">Dynamic Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">56</td><td><div class="tr-name">Ahmed Nur</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Hopkins High School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">57</td><td><div class="tr-name">Micah Gordon</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'11</td><td class="tr-school">Plainfield Cardinals</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank">58</td><td><div class="tr-name">Chiekh Niang</div><div class="tr-country"><span>🇮🇹</span> Italy</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'7</td><td class="tr-school">Trento</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">59</td><td><div class="tr-name">King Rachal</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'7</td><td class="tr-school">DNA Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">60</td><td><div class="tr-name">Gene Roebuck</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'5</td><td class="tr-school">La Mirada</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">61</td><td><div class="tr-name">Josiah Harrington</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'5</td><td class="tr-school">North Scott</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">62</td><td><div class="tr-name">Omer Kutluay</div><div class="tr-country"><span>🇹🇷</span> Turkey</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'4</td><td class="tr-school">Real Madrid</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">63</td><td><div class="tr-name">Dylan Jones</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'6</td><td class="tr-school">Bartlett</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">64</td><td><div class="tr-name">Lucai Anderson</div><div class="tr-country"><span>🇩🇪</span> Germany</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'4</td><td class="tr-school">Trinity Christian</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">65</td><td><div class="tr-name">Messi Yangala</div><div class="tr-country"><span>🇫🇷</span> France</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'9</td><td class="tr-school">INSEP Pole France</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">66</td><td><div class="tr-name">Baboucarr Ann</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'5</td><td class="tr-school">Maple Grove</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">67</td><td><div class="tr-name">Munir Greig</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'6</td><td class="tr-school">Coronado</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank">68</td><td><div class="tr-name">Gustav Drejer</div><div class="tr-country"><span>🇩🇰</span> Denmark</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'8</td><td class="tr-school">BC Vaerlose</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">69</td><td><div class="tr-name">Brandon Woodard</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Bishop McNamara</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">70</td><td><div class="tr-name">Aaron Britt</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'11</td><td class="tr-school">The Villages</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">71</td><td><div class="tr-name">Sohan Boungo</div><div class="tr-country"><span>🇫🇷</span> France</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'1</td><td class="tr-school">Gravelines-Dunkerque</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">72</td><td><div class="tr-name">Petar Bjelica</div><div class="tr-country"><span>🇷🇸</span> Serbia</div></td><td class="tr-pos">C</td><td class="tr-ht">6'8</td><td class="tr-school">Mega Basket</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">73</td><td><div class="tr-name">Carson Crawford</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'6</td><td class="tr-school">Fleming Island</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sg"><td class="tr-rank">74</td><td><div class="tr-name">Patrick Otey</div><div class="tr-country"><span>🇧🇷</span> Brazil</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'5</td><td class="tr-school">St Thomas Moore</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">75</td><td><div class="tr-name">Darrell Davis</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'1</td><td class="tr-school">Spire Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">76</td><td><div class="tr-name">Derek Daniels</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6'8</td><td class="tr-school">Montverde</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">77</td><td><div class="tr-name">Kamsi Awaka</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6'8</td><td class="tr-school">Blair Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank">78</td><td><div class="tr-name">Isaiah Santos</div><div class="tr-country"><span>🇧🇷</span> Brazil</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'5</td><td class="tr-school">Seven Lakes</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="sg"><td class="tr-rank">79</td><td><div class="tr-name">Ricards Aizpurs</div><div class="tr-country"><span>🇱🇻</span> Latvia</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'6</td><td class="tr-school">Stella Azzurra</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">80</td><td><div class="tr-name">Paul Plato</div><div class="tr-country"><span>🇩🇪</span> Germany</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Wurzburg</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">81</td><td><div class="tr-name">Aaron Towo-Nansi</div><div class="tr-country"><span>🇫🇷</span> France</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'9</td><td class="tr-school">Cholet</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">82</td><td><div class="tr-name">Jamaal McKnight Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'11</td><td class="tr-school">LuHi</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">83</td><td><div class="tr-name">TJ Jamison</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'2</td><td class="tr-school">Cavalry Baptist Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">84</td><td><div class="tr-name">Joshua Rivera</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'7</td><td class="tr-school">Archbishop Stepinac</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">85</td><td><div class="tr-name">Jeremiah Profit</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'5</td><td class="tr-school">Rancho Christian</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">86</td><td><div class="tr-name">Jahari Miller</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'2</td><td class="tr-school">Pike</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">87</td><td><div class="tr-name">Yohan Kabongo</div><div class="tr-country"><span>🇨🇩</span> DRC</div></td><td class="tr-pos">C</td><td class="tr-ht">6'9</td><td class="tr-school">DME Academy</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">88</td><td><div class="tr-name">Chase Richardson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'1</td><td class="tr-school">Friendswood</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">89</td><td><div class="tr-name">Justin Frison</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'11</td><td class="tr-school">Houston High School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">90</td><td><div class="tr-name">Taj Saragba</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'7</td><td class="tr-school">Huntington Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">91</td><td><div class="tr-name">Godson Okokoh</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Iowa United</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">92</td><td><div class="tr-name">Cameron Barnes</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'7</td><td class="tr-school">Link Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">93</td><td><div class="tr-name">Ferlandes Wright</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'7</td><td class="tr-school">La Lumiere</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">94</td><td><div class="tr-name">Jack Kohnen</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'6</td><td class="tr-school">Sillinger</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank">95</td><td><div class="tr-name">Deng Ngor</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'9</td><td class="tr-school">Fort Erie</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">96</td><td><div class="tr-name">Payton Jones</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'2</td><td class="tr-school">Beaumont United</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">97</td><td><div class="tr-name">Myles Fuentes</div><div class="tr-country"><span>🇵🇷</span> Puerto Rico</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'0</td><td class="tr-school">—</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">98</td><td><div class="tr-name">Mekhi Robertson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'4</td><td class="tr-school">SoCal Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">99</td><td><div class="tr-name">Justin Wise</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'4</td><td class="tr-school">North Oconee</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">100</td><td><div class="tr-name">Keaundre Morris</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'1</td><td class="tr-school">Dream City Christian</td><td><span class="tr-us">USA</span></td></tr>
+      </tbody>
+      <tbody id="tbody-2028" class="class-view">
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank top3">1</td><td><div class="tr-name">AJ Williams</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’6</td><td class="tr-school">ELCA</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank top3">2</td><td><div class="tr-name">Isaiah Hamilton</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’6</td><td class="tr-school">Crestwood Prep</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank top3">3</td><td><div class="tr-name">Rhys Robinson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’7</td><td class="tr-school">Real Madrid</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">4</td><td><div class="tr-name">Colton Hiller</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’6</td><td class="tr-school">Coatesville</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">5</td><td><div class="tr-name">Bamba Touray</div><div class="tr-country"><span>🇸🇳</span> Senegal</div></td><td class="tr-pos">C</td><td class="tr-ht">7’0</td><td class="tr-school">IMG Academy</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">6</td><td><div class="tr-name">Evan Willis</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’8</td><td class="tr-school">Mater Dei</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">7</td><td><div class="tr-name">DJ Okoth</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’7</td><td class="tr-school">Bartlett</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">8</td><td><div class="tr-name">Adan Diggs</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’4</td><td class="tr-school">Williams Field</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">9</td><td><div class="tr-name">Shalen Sheppard</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6’8</td><td class="tr-school">Crossroads</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">10</td><td><div class="tr-name">Bentley Lusakueno</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6’10</td><td class="tr-school">Woodward</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">11</td><td><div class="tr-name">Erick Dampier</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6’10</td><td class="tr-school">Madison-Ridgeland</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">12</td><td><div class="tr-name">Xavier Skipworth</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’5</td><td class="tr-school">Montverde</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">13</td><td><div class="tr-name">Jan Cerdan</div><div class="tr-country"><span>🇪🇸</span> Spain</div></td><td class="tr-pos">PF</td><td class="tr-ht">6’10</td><td class="tr-school">FC Barcelona</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">14</td><td><div class="tr-name">Mason Collins</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’6</td><td class="tr-school">Christ School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">15</td><td><div class="tr-name">Soumalia Keita</div><div class="tr-country"><span>🇲🇱</span> Mali</div></td><td class="tr-pos">C</td><td class="tr-ht">6’11</td><td class="tr-school">Casademont Zaragoza</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">16</td><td><div class="tr-name">Xavier Young</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6’10</td><td class="tr-school">Faith Family</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">17</td><td><div class="tr-name">Myles Hayes</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’5</td><td class="tr-school">Woodward</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">18</td><td><div class="tr-name">Kameron Mercer</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’5</td><td class="tr-school">Princeton HS</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">19</td><td><div class="tr-name">Brady Pettigrew</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’3</td><td class="tr-school">Bolingbrook</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">20</td><td><div class="tr-name">Michai White</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’0</td><td class="tr-school">Brewster Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">21</td><td><div class="tr-name">Dylan Betts</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">7’0</td><td class="tr-school">IMG Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">22</td><td><div class="tr-name">Josiah Rose</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’2</td><td class="tr-school">Faith & Family</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">23</td><td><div class="tr-name">Yann Kamagate</div><div class="tr-country"><span>🇧🇫</span> Burkina</div></td><td class="tr-pos">C</td><td class="tr-ht">7’1</td><td class="tr-school">St Frances</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">24</td><td><div class="tr-name">Josh Lowery</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’4</td><td class="tr-school">Sierra Canyon</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">25</td><td><div class="tr-name">Jakyi Miles</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’4</td><td class="tr-school">Mesa</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">26</td><td><div class="tr-name">Tai Bell</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’3</td><td class="tr-school">Mater Lakes</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">27</td><td><div class="tr-name">Blaze Johnson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’4</td><td class="tr-school">City Reapers</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">28</td><td><div class="tr-name">Logan Chwastyk</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6’10</td><td class="tr-school">Malvern Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sg"><td class="tr-rank">29</td><td><div class="tr-name">Toni Garma</div><div class="tr-country"><span>🇭🇷</span> Croatia</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’5</td><td class="tr-school">Real Madrid</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">30</td><td><div class="tr-name">Quinton Wilson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’5</td><td class="tr-school">Cold Hearts (OTE)</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">31</td><td><div class="tr-name">Liam Mitakaro</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’4</td><td class="tr-school">Bella Vista</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">32</td><td><div class="tr-name">Cole Kelly</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’6</td><td class="tr-school">Neuqua Valley</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">33</td><td><div class="tr-name">Josh Lindsay</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’0</td><td class="tr-school">St Xavier</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">34</td><td><div class="tr-name">Benjamin Berrouet</div><div class="tr-country"><span>🇱🇻</span> Latvia</div></td><td class="tr-pos">PF</td><td class="tr-ht">6’8</td><td class="tr-school">Dynamic Prep</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">35</td><td><div class="tr-name">Kenyon St Louis</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’2</td><td class="tr-school">Winston Salem Christian</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="sg"><td class="tr-rank">36</td><td><div class="tr-name">Liam Kabeya</div><div class="tr-country"><span>🇫🇷</span> France</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’4</td><td class="tr-school">INSEP PF</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">37</td><td><div class="tr-name">Rowan Phillips</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’6</td><td class="tr-school">Westtown School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank">38</td><td><div class="tr-name">Yizhaojie Zhang</div><div class="tr-country"><span>🇨🇳</span> China</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’8</td><td class="tr-school">Shanghai Sharks</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">39</td><td><div class="tr-name">Kevin Wheatley Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6’6</td><td class="tr-school">Brewster Academy</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">40</td><td><div class="tr-name">Antoine Caughman Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’4</td><td class="tr-school">WJ Keenan High School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">41</td><td><div class="tr-name">Malik Moore</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’3</td><td class="tr-school">Union Catholic</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">42</td><td><div class="tr-name">Gideon Silas Henry</div><div class="tr-country"><span>🇳🇬</span> Nigeria</div></td><td class="tr-pos">C</td><td class="tr-ht">6’9</td><td class="tr-school">Orange1 Bassano</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">43</td><td><div class="tr-name">Messie Iwani</div><div class="tr-country"><span>🇫🇷</span> France</div></td><td class="tr-pos">PF</td><td class="tr-ht">6’9</td><td class="tr-school">INSEP PF</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">44</td><td><div class="tr-name">Will Brunson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’5</td><td class="tr-school">Rutgers Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">45</td><td><div class="tr-name">Isaiah Carter</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’6</td><td class="tr-school">Highland School</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">46</td><td><div class="tr-name">Boogie Cook</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’6</td><td class="tr-school">Christian Academy of Louisville</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">47</td><td><div class="tr-name">Anthony Spratt Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6’6</td><td class="tr-school">Benton</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">48</td><td><div class="tr-name">Braxton Bogard</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6’8</td><td class="tr-school">Archbishop Spalding</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">49</td><td><div class="tr-name">Isaiah Clarke</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">PF</td><td class="tr-ht">6’8</td><td class="tr-school">Crestwood Prep</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">50</td><td><div class="tr-name">Ilian Toholin</div><div class="tr-country"><span>🇫🇷</span> France</div></td><td class="tr-pos">PG</td><td class="tr-ht">6’4</td><td class="tr-school">INSEP PF</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr><td colspan="6" style="padding:12px 20px;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--dark3)">Also Receiving Votes</td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Lautaro Basualdo</div><div class="tr-country"><span>🇦🇷</span> <span style="color:var(--gray);font-size:11px">Argentina · Watchlist</span></div></td><td class="tr-pos">PF</td><td class="tr-ht">6’10</td><td class="tr-school">Varese Academy</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Luka Leni Ukic</div><div class="tr-country"><span>🇭🇷</span> <span style="color:var(--gray);font-size:11px">Croatia · Watchlist</span></div></td><td class="tr-pos">PG</td><td class="tr-ht">6’2</td><td class="tr-school">KK Split</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Roman Kolka</div><div class="tr-country"><span>🇸🇮</span> <span style="color:var(--gray);font-size:11px">Slovenia · Watchlist</span></div></td><td class="tr-pos">PG</td><td class="tr-ht">6’6</td><td class="tr-school">Cedevita Olimpija</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="sg"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Danny Egbe</div><div class="tr-country"><span>🇩🇪</span> <span style="color:var(--gray);font-size:11px">Germany · Watchlist</span></div></td><td class="tr-pos">SG</td><td class="tr-ht">6’4</td><td class="tr-school">Hamburg Towers</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Yorgos Monama</div><div class="tr-country"><span>🇬🇷</span> <span style="color:var(--gray);font-size:11px">Greece · Watchlist</span></div></td><td class="tr-pos">PG</td><td class="tr-ht">6’6</td><td class="tr-school">Spanish Basketball Academy</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Lino Shenck</div><div class="tr-country"><span>🇩🇪</span> <span style="color:var(--gray);font-size:11px">Germany · Watchlist</span></div></td><td class="tr-pos">PF</td><td class="tr-ht">6’8</td><td class="tr-school">Bramfelder</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Roko Jerkic</div><div class="tr-country"><span>🇩🇪</span> <span style="color:var(--gray);font-size:11px">Germany · Watchlist</span></div></td><td class="tr-pos">SF</td><td class="tr-ht">6’6</td><td class="tr-school">Bayern Munich</td><td><span class="tr-intl">INTL</span></td></tr>
+
+      </tbody>
+      <tbody id="tbody-2029" class="class-view">
+<tr data-origin="intl" data-pos="c"><td class="tr-rank top3">1</td><td><div class="tr-name">Mohamed Dabone</div><div class="tr-country"><span>🇧🇫</span> Burkina Faso</div></td><td class="tr-pos">C</td><td class="tr-ht">6'11</td><td class="tr-school">FC Barcelona</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank top3">2</td><td><div class="tr-name">Draydne McDaniel</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Prolific Prep</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank top3">3</td><td><div class="tr-name">JJ Crawford</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'3</td><td class="tr-school">Rainier Beach</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">4</td><td><div class="tr-name">Cayden Gaskins</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Columbus</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">5</td><td><div class="tr-name">RJ Evans</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'7</td><td class="tr-school">SLAM HS</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pf"><td class="tr-rank">6</td><td><div class="tr-name">David Johnson</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Oak Hill</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">7</td><td><div class="tr-name">Will Conroy Jr</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">5'11</td><td class="tr-school">Village Christian</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">8</td><td><div class="tr-name">Josiah Brooks</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'2</td><td class="tr-school">Slam Miami</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank">9</td><td><div class="tr-name">Flory Kuminga</div><div class="tr-country"><span>🇨🇩</span> DRC</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'6</td><td class="tr-school">TPS</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sf"><td class="tr-rank">10</td><td><div class="tr-name">Bronx Ganaway</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'7</td><td class="tr-school">Boonville</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">11</td><td><div class="tr-name">Mason Grivna</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6'11</td><td class="tr-school">—</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">12</td><td><div class="tr-name">Mateo Moise</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'2</td><td class="tr-school">Royal Crown</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="sg"><td class="tr-rank">13</td><td><div class="tr-name">Austin Leonard</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">SG</td><td class="tr-ht">6'4</td><td class="tr-school">Grayson</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="pg"><td class="tr-rank">15</td><td><div class="tr-name">Praise Badejo</div><div class="tr-country"><span>🇨🇦</span> Canada</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'1</td><td class="tr-school">King Heights</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="c"><td class="tr-rank">16</td><td><div class="tr-name">Alex Alexander</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">C</td><td class="tr-ht">6'9</td><td class="tr-school">Mesquite</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="c"><td class="tr-rank">17</td><td><div class="tr-name">Chudier Yak</div><div class="tr-country"><span>🇸🇸</span> South Sudan</div></td><td class="tr-pos">C</td><td class="tr-ht">6'9</td><td class="tr-school">North Broward Prep</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="intl" data-pos="pf"><td class="tr-rank">18</td><td><div class="tr-name">Somto Patrick</div><div class="tr-country"><span>🇧🇭</span> Bahrain</div></td><td class="tr-pos">PF</td><td class="tr-ht">6'8</td><td class="tr-school">Modesto Christian</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr data-origin="usa" data-pos="pg"><td class="tr-rank">19</td><td><div class="tr-name">King Bacot</div><div class="tr-country"><span>🇺🇸</span> USA</div></td><td class="tr-pos">PG</td><td class="tr-ht">6'4</td><td class="tr-school">Petersburg</td><td><span class="tr-us">USA</span></td></tr>
+<tr data-origin="intl" data-pos="sf"><td class="tr-rank">20</td><td><div class="tr-name">Kristians Martinsons</div><div class="tr-country"><span>🇱🇻</span> Latvia</div></td><td class="tr-pos">SF</td><td class="tr-ht">6'7</td><td class="tr-school">FC Barcelona</td><td><span class="tr-intl">INTL</span></td></tr>
+<tr><td colspan="6" style="padding:12px 20px;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--dark3)">Also on the Radar</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Harlem Nunez</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Kiir Paul Majok</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Phillip Reed</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Jordan McDaniel</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Justin Reed Jr</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Isaiah Rider IV</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Joshua Sanders</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Deloni Pughsley</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Zion Lawson</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Dallas Baldwin</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Ja'Den Gambrell</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Bryce McCray</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Stephon Blackmon Jr</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Bre'Vynn Johnson</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Avian Rodriguez</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Dominic Mauro</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+<tr data-origin="—" data-pos="—"><td class="tr-rank" style="color:var(--gray)">—</td><td><div class="tr-name">Tristan Breland</div><div class="tr-country" style="color:var(--gray);font-size:11px">Watchlist</div></td><td class="tr-pos" style="color:var(--gray)">—</td><td class="tr-ht" style="color:var(--gray)">—</td><td class="tr-school">—</td><td>—</td></tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div id="page-methodology" class="page">
+  <div class="method-grid">
+    <div class="method-intro">
+      <div class="section-label">How We Rank</div>
+      <h1 class="section-h2" style="margin-bottom:24px">Our Methodology</h1>
+      <p>Pole 2 Pole rankings are built on one principle: evaluate what actually wins basketball games — not what looks good on a highlight tape or plays well to a crowd of shoe brand recruiters.</p>
+      <p>We scout players in competitive environments across the U.S. and internationally, including FIBA competitions, Adidas Next Gen, Grind Session events, European league play, and BAL Academy circuits. We look at film. We talk to coaches. We track consistency over time, not single-game performances.</p>
+      <p>Every player in our system is ranked on the same global scale. A prospect from Žalgiris Academy is evaluated by the same standards as one from Montverde. That's the only way a global ranking means anything.</p>
+    </div>
+    <div class="method-pillar"><div class="pillar-num">01</div><div class="pillar-title">Skill &amp; Craft</div><div class="pillar-body">We evaluate a player's ability to create shots for themselves and others, handle pressure, and execute in critical moments. Skill is what remains after athleticism fades.</div><div class="pillar-criteria"><span class="criteria-tag">Shot creation</span><span class="criteria-tag">Ball handling</span><span class="criteria-tag">Passing</span><span class="criteria-tag">Finishing</span><span class="criteria-tag">Manipulation</span></div></div>
+    <div class="method-pillar"><div class="pillar-num">02</div><div class="pillar-title">Basketball IQ</div><div class="pillar-body">Decision speed, defensive rotations, weak-side awareness, connective passing, and the ability to read and react rather than execute a script. IQ is the hardest thing to teach and the most predictive of long-term success.</div><div class="pillar-criteria"><span class="criteria-tag">Decision making</span><span class="criteria-tag">Off-ball reads</span><span class="criteria-tag">Weak-side instincts</span><span class="criteria-tag">Communication</span></div></div>
+    <div class="method-pillar"><div class="pillar-num">03</div><div class="pillar-title">Winning Habits</div><div class="pillar-body">How a player behaves when the game is close, when they're down, when their shot isn't falling, and when their team needs something from them that isn't their primary role. Character and competitive disposition are non-negotiable criteria.</div><div class="pillar-criteria"><span class="criteria-tag">Competitiveness</span><span class="criteria-tag">Defensive effort</span><span class="criteria-tag">Pace regulation</span><span class="criteria-tag">Emotional stability</span></div></div>
+    <div class="method-pillar"><div class="pillar-num">04</div><div class="pillar-title">Projection &amp; Context</div><div class="pillar-body">Every player is ranked based on where we believe they project — not only where they are today. We account for competition level, system fit, age relative to class, and physical trajectory. A player in a weaker league who dominates and shows elite indicators ranks appropriately.</div><div class="pillar-criteria"><span class="criteria-tag">Physical trajectory</span><span class="criteria-tag">Competition level</span><span class="criteria-tag">Age in class</span><span class="criteria-tag">System independence</span></div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <div class="section-label">Who We Are</div>
+    <h1 class="about-h1">Built for the<br><span class="gold">Whole</span><br>World.</h1>
+    <div class="about-body">
+      <p>Pole 2 Pole exists because no one was doing this right. Domestic rankings are compromised by shoe brand relationships and politics. International talent is fragmented across regional circuits with no unified standard. Elite players are hiding in plain sight — not because they're hard to find, but because no one was looking in the right places with the right eyes.</p>
+      <p>We are not affiliated with any shoe brand, agency, media conglomerate, or league. We have no incentive to rank anyone above their ability. Our only currency is credibility — and we protect it aggressively.</p>
+      <p>We have relationships spanning multiple continents. We are embedded in some of the most internationally diverse basketball ecosystems in the world. That access informs everything we do.</p>
+      <p>Every player in our system — whether from Southeastern Prep or FC Barcelona — is evaluated the same way. No politics. No shoe brand pressure. No agenda. Just basketball.</p>
+    </div>
+  </div>
+  <div style="margin:0 60px 64px;height:300px;border-radius:4px;overflow:hidden;position:relative;border:1px solid var(--dark3)">
+    <img src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=1400&q=80&auto=format&fit=crop"
+         alt="Basketball" loading="lazy"
+         style="width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:grayscale(20%) brightness(0.55)">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,0.75) 0%,rgba(8,8,8,0.2) 100%)"></div>
+    <div style="position:absolute;bottom:36px;left:48px">
+      <div style="font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Our Standard</div>
+      <div style="font-family:var(--font-display);font-size:32px;font-weight:900;text-transform:uppercase;line-height:1.05;color:var(--white)">No politics.<br>No agenda.<br>Just basketball.</div>
+    </div>
+  </div>
+  <section class="nl-section" style="margin:0 60px 80px;border:1px solid var(--dark3)">
+    <div class="nl-inner">
+      <div class="section-label">Work With Us</div>
+      <h2 class="nl-h2" style="font-size:clamp(28px,3vw,40px)">Coaches. Agents.<br>Programs. Connect.</h2>
+      <p class="nl-sub">If you're a college program, agency, or international club and want to work with Pole 2 Pole, reach out.</p>
+      <div class="nl-form">
+        <input class="nl-input" type="email" placeholder="your@email.com">
+        <button class="nl-btn">Get In Touch</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">POLE<span class="two">2</span>POLE</div>
+      <div class="footer-tagline">The only platform ranking U.S. and international youth basketball prospects on the same global scale.</div>
+      <div class="footer-social"><span class="soc">Twitter</span><span class="soc">Instagram</span><span class="soc">YouTube</span></div>
+    </div>
+    <div>
+      <div class="footer-col-title">Rankings</div>
+      <ul class="footer-links">
+        <li><a onclick="showPage('rankings');setActiveTab('2027')">Class of 2027</a></li>
+        <li><a onclick="showPage('rankings');setActiveTab('2028')">Class of 2028</a></li>
+        <li><a onclick="showPage('rankings');setActiveTab('2029')">Class of 2029</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Site</div>
+      <ul class="footer-links">
+        <li><a onclick="showPage('methodology')">Methodology</a></li>
+        <li><a onclick="showPage('about')">About</a></li>
+        <li><a>Subscribe</a></li>
+        <li><a>Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">International</div>
+      <ul class="footer-links">
+        <li><a>Europe</a></li><li><a>Americas</a></li>
+        <li><a>Africa / Middle East</a></li><li><a>Asia / Oceania</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Pole 2 Pole. All rights reserved.</div>
+    <div class="footer-legal"><a>Privacy Policy</a><a>Terms of Use</a></div>
+  </div>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  const map={home:0,rankings:1,methodology:2,about:3};
+  document.querySelectorAll('.nav-link').forEach((l,i)=>l.classList.toggle('active',i===map[id]));
+}
+function setActive(el){
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  el.classList.add('active');
+}
+function setActiveTab(cls){
+  showPage('rankings');
+  const tabMap={'2027':0,'2028':1,'2029':2};
+  document.querySelectorAll('.class-tab').forEach((t,i)=>t.classList.toggle('active',i===tabMap[cls]));
+  document.querySelectorAll('.class-view').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tbody-'+cls).classList.add('active');
+  currentFilter='all';
+  document.querySelectorAll('.filter-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.getElementById('search-input').value='';
+}
+let currentFilter='all';
+function setFilter(btn,f){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterTable();
+}
+function filterTable(){
+  const q=document.getElementById('search-input').value.toLowerCase();
+  const activeBody=document.querySelector('.class-view.active');
+  if(!activeBody)return;
+  activeBody.querySelectorAll('tr').forEach(row=>{
+    const origin=row.dataset.origin||'';
+    const pos=row.dataset.pos||'';
+    const text=row.textContent.toLowerCase();
+    let show=true;
+    if(currentFilter==='usa'&&origin!=='usa')show=false;
+    if(currentFilter==='intl'&&origin!=='intl')show=false;
+    if(['pg','sg','sf','pf','c'].includes(currentFilter)&&pos!==currentFilter)show=false;
+    if(q&&!text.includes(q))show=false;
+    row.style.display=show?'':'none';
+  });
+}
+</script>
+</body>
+</html>
