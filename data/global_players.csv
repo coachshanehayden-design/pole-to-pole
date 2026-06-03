@@ -56,7 +56,7 @@ Lucas Morillo,2026,Illinois,24/10/2007,6’6,Dominican Republic,SG,34,⭐⭐⭐�
 Quinn Costello,2026,Michigan,08/07/2007,6’10,USA,C,48,⭐⭐⭐⭐,Michigan,2007
 Marcis Ponder,2026,Florida State,07/10/2007,7’0,USA,C,59,⭐⭐⭐⭐,Gillion,2007
 Joe Philon,2026,Uncommitted,22/03/2007,6’7,USA,PF,71,⭐⭐⭐⭐,Montverde,2007
-Chiekh Niang,2027,International,16/09/2008,6’7,Italy,SF,60,⭐⭐⭐⭐,Trento,2008
+Chiekh Niang,2027,International,16/09/2008,6’7,Italy,SF,60,⭐⭐⭐⭐,Aquila Trento,2008
 Boyuan Zhang,2026,Uncommitted,22/01/2007,6’8,China,SF,61,⭐⭐⭐⭐,Veritas Academy,2007
 Bo Ogden,2026,Texas,07/03/2008,6’5,USA,SG,66,⭐⭐⭐⭐,Westlake,2008
 Kayden Allen,2026,Uncommitted,30/04/2008,6’4,USA,SG,67,⭐⭐⭐⭐,LuHi,2008
@@ -66,7 +66,7 @@ Luke Ertel,2026,Purdue,,6’1,USA,PG,64,⭐⭐⭐⭐,Mt Vernon HS,2006
 Anthony Felesi,2026,Pitt,26/12/2007,6’5,USA,SF,32,⭐⭐⭐⭐,Utah Prep,2007
 Gage Mayfield,2026,Oklahoma,,6’7,USA,PF,82,⭐⭐⭐⭐,Hale County,2007
 Prince Alexander Moody,2026,Indiana,19/09/2006,6’3,USA,PG,65,⭐⭐⭐⭐,Bishop McNamara,2006
-"Nathan Soliman ",2027,International,15/05/2009,6’9,France,PF,1,⭐⭐⭐⭐⭐,INSEP PF,2009
+"Nathan Soliman ",2027,International,15/05/2009,6’9,France,PF,1,⭐⭐⭐⭐⭐,JL Bourg,2009
 Darius Wabbington,2027,Uncommitted,29/08/2008,6’11,USA,C,17,⭐⭐⭐⭐⭐,Sunnyslope AZ,2008
 Ryan Hampton,2027,Uncommitted,08/05/2008,6’6,USA,SF,16,⭐⭐⭐⭐⭐,DME Academy,2008
 Nikola Kusturica,2027,International,30/04/2009,6’8,Serbia,SF,3,⭐⭐⭐⭐⭐,FC Barcelona,2009
@@ -83,7 +83,7 @@ Isaiah Hill,2027,Uncommitted,09/08/2009,6’10,USA,C,18,⭐⭐⭐⭐⭐,Pike (IN
 Dawson Battie,2027,Uncommitted,24/09/2008,6’8,USA,PF,28,⭐⭐⭐⭐,St Mark’s,2008
 Josh Leonard,2027,Uncommitted,,6’6,USA,SF,35,⭐⭐⭐⭐,Wilson (SC),2008
 Moussa Kamissoko,2027,Uncommitted,,6’8,USA,PF,12,⭐⭐⭐⭐⭐,LuHi,2008
-Luke Paul,2027,International,20/02/2009,6’6,Australia,PG,24,⭐⭐⭐⭐⭐,Centre of Excellence (AUS),2009
+Luke Paul,2027,International,20/02/2009,6’6,Australia,PG,24,⭐⭐⭐⭐⭐,Centre of Excellence,2009
 Obinna Ezekie Jr,2026,Louisville,,7’0,Nigeria,C,14,⭐⭐⭐⭐⭐,Southeastern Prep,2008
 Cayden Daughtry,2027,Uncommitted,10/04/2026,5'11,USA,PG,10,⭐⭐⭐⭐⭐,Calvary Christian,2009
 Davion Thompson,2027,Uncommitted,22/11/2008,6’2,USA,PG,19,⭐⭐⭐⭐⭐,Link Academy,2008
@@ -209,7 +209,7 @@ Jaxson Davis,2027,Uncommitted,14/11/2008,6’1,USA,PG,32,⭐⭐⭐⭐,Warrren,20
 Cherif Millogo,2027,Uncommitted,,7’2,Burkina,C,50,⭐⭐⭐⭐,St Francis,2007
 Scottie Adkinson,2027,Missouri,,6’4,USA,PG,41,⭐⭐⭐⭐,Webster Groves,2008
 Antonio Pemberton,2027,Uncommitted,,6’1,Dominican Republic,SG,42,⭐⭐⭐⭐,Masters Academy,2008
-Messi Yangala,2027,International,21/06/2009,6’9,France,PF,67,⭐⭐⭐⭐,INSEP Pole France,2009
+Messi Yangala,2027,International,21/06/2009,6’9,France,PF,67,⭐⭐⭐⭐,INSEP PF,2009
 Gustav Drejer,2027,International,21/02/2009,6’8,Denmark,SF,71,⭐⭐⭐⭐,BC Vaerlose,2009
 Jeremy Jenkins,2027,Uncommitted,,6’9,USA,PF,55,⭐⭐⭐⭐,Riviera Prep,
 Ahmed Nur,2027,Uncommitted,,6’8,USA,PF,57,⭐⭐⭐⭐,Hopkins High School,
@@ -278,8 +278,8 @@ Jace Opoku,2029,Uncommitted,09/06/2011,6’2,USA,PG,31,⭐⭐⭐⭐,"Rockwell ",
 Darren Ford,2028,Uncommitted,,6’4,USA,PG,51,⭐⭐⭐⭐,AZ Compass Prep,
 Jimmie Haywood,2027,Uncommitted,,6’3,USA,SG,,⭐⭐⭐⭐,Compass,
 Jalen White,2027,Uncommitted,,6’6,USA,SF,,⭐⭐⭐⭐,Bella Vista,
-Hassan Abdulkadir,2027,,,6’11,Bahrain,C,,⭐⭐⭐,Bella Vista,2009
-Jordan Fisher,2028,,,6’5,Canada,PF,,⭐⭐⭐,Columbus,2009
+Hassan Abdulkadir,2028,,,6’11,Bahrain,C,95,⭐⭐⭐⭐,Bella Vista,2009
+Jordan Fisher,2028,,,6’5,Canada,PF,113,⭐⭐⭐,Columbus,2009
 Harlem Nunez,2029,Uncommitted,23/12/2009,6’4,Dominican Republic,PG,21,⭐⭐⭐⭐,Mt Zion Prep,2009
 Braylon Williams,2028,Uncommitted,,6’0,USA,PG,64,⭐⭐⭐⭐,Bartlett,
 King Rachal,2027,Uncommitted,,6’7,USA,SF,58,⭐⭐⭐⭐,DNA Prep,
@@ -369,7 +369,7 @@ Owen Eteuati-Edwards,2028,Uncommitted,,6’7,USA,PF,72,⭐⭐⭐⭐,Arcadia High
 Joshua Huggins,2028,Uncommitted,,6’6,USA,SF,88,⭐⭐⭐⭐,Briarcrest Christian,
 Jordan Mitchell,2028,Uncommitted,,6’2,USA,PG,75,⭐⭐⭐⭐,Louisville Male High School,
 Aaron Parker,2028,Uncommitted,,6’6,USA,SF,101,⭐⭐⭐⭐,NC Good Better Best,
-Chase Smith,2028,Uncommitted,,6’8,USA,PF,95,⭐⭐⭐⭐,Queen’s Grant Academy,
+Chase Smith,2028,Uncommitted,,6’8,USA,PF,111,⭐⭐⭐⭐,Queen’s Grant Academy,
 Billy Stanfield,2028,Uncommitted,,6’5,USA,SF,96,⭐⭐⭐⭐,Calvert Hall College,
 Sergio Palau,2028,International,,6’8,Spain,PF,102,⭐⭐⭐⭐,Valencia Basket,2010
 Trey McKinney,2028,Uncommitted,,6’5,USA,SF,97,⭐⭐⭐⭐,Millenium,
@@ -409,3 +409,8 @@ Kareem Smith-Bey,2028,Uncommitted,,6’5,USA,SF,107,⭐⭐⭐⭐,St John’s Col
 Chacho Womack,2028,Uncommitted,,6’4,USA,SG,110,⭐⭐⭐⭐,West Charlotte,
 Pierre Rondo,2030,Uncommitted,,6’0,USA,PG,7,⭐⭐⭐⭐,North Oldham,
 Josh Sanders,2030,Uncommitted,,6’10,USA,C,8,⭐⭐⭐⭐,CFSA,
+Akal Nyok,2027,,,7’1,South Sudan,C,,⭐⭐⭐,Columbus,
+Ike Davids,2027,,,6’11,United Kingdom,C,,⭐⭐⭐,luhi,
+Sebastien N’Dour,2028,,,6’7,Senegal,PF,112,⭐⭐⭐,montverde,2008
+Malachi Booker,2027,,,6’7,USA,SF,,⭐⭐⭐,montverde,
+Isaiah Barnes,2027,Uncommitted,,6’3,Mexico,SG,,⭐⭐⭐,Crespi,2008
